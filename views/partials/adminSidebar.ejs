@@ -1,0 +1,118 @@
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
+    <ul class="nav">
+      <li class="nav-item">
+        <div class="d-flex sidebar-profile">
+  
+          <div class="sidebar-profile-image">
+            <!-- User Image -->
+            <img src="data:<%= admin.image.contentType %>;base64,<%= admin.image.data.toString('base64') %>" alt="User Image">
+            
+            <span class="sidebar-status-indicator"></span>
+          </div>
+  
+          <div class="sidebar-profile-name">
+            <p class="sidebar-name">
+              <%=  admin.fullName  %>
+            </p>
+            <p class="sidebar-designation" id="greeting">
+              <script src="../js/admingreeting.js"></script>
+            </p>
+            
+          </div>
+        </div>
+        
+        <p class="sidebar-menu-title">Dash menu </p>
+        
+      </li>
+      
+      <li class="nav-item">
+        <a class="nav-link" href="/backend/dashboard">
+          <i class="typcn typcn-device-desktop menu-icon"></i>
+          <span class="menu-title">Dashboard <span class="badge badge-primary ml-3">New</span></span>
+        </a>
+      </li>
+
+      <% if (admin && admin.role === 'Admin') { %>
+
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+            <i class="typcn typcn-flow-merge menu-icon"></i>
+            <span class="menu-title">Admin Section</span>
+            <i class="menu-arrow"></i>
+          </a>
+          <div class="collapse" id="auth">
+            <ul class="nav flex-column sub-menu">
+              <li class="nav-item"> <a class="nav-link" href="/backend/admin">Add Admin</a></li>
+            </ul>
+          </div>
+        </li>
+        
+      <% } %>
+
+      <li class="nav-item">
+        <a class="nav-link" href="/backend/patient-appoint">
+          <i class="typcn typcn-briefcase menu-icon"></i>
+          <span class="menu-title">All Appointments</span>
+        </a>
+      </li>
+     
+
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+          <i class="typcn typcn-flow-merge menu-icon"></i>
+          <span class="menu-title">Doctors Section</span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="auth">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="/backend/add-doctor">Add Doctor</a></li>
+            <li class="nav-item"> <a class="nav-link" href="/backend/all-doctor">All Doctors</a></li>
+          </ul>
+        </div>
+      </li>
+     
+
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+          <i class="typcn typcn-user-add menu-icon"></i>
+          <span class="menu-title">Patients Section</span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="auth">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="/backend/addPatient">Add New Patient</a></li>
+            <li class="nav-item"> <a class="nav-link" href="/backend/allpatients">All Registered Patients</a></li>
+            <li class="nav-item"> <a class="nav-link" href="/backend/unregis_patient">Unregistered Patients</a></li>
+          </ul>
+        </div>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+          <i class="typcn typcn-credit-card menu-icon"></i>
+          <span class="menu-title">Payment Section</span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="auth">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="/backend/patientPayment">Patients Payment Record</a</li>
+            <li class="nav-item"> <a class="nav-link" href="/backend/doctorPayment">Doctors Salary Record</a></li>
+            <li class="nav-item"> <a class="nav-link" href="/backend/hospitalExpenses">Hospital Expenses Record</a></li>
+          </ul>
+        </div>
+      </li>
+
+
+      <li class="nav-item">
+
+        <form class="nav-link"  action="/logout?_method=DELETE" method="post">
+          <li class="typcn typcn-power text-primary"> <button type="submit" class="logouts-btns">Logout</button></li>
+       
+       </form>
+
+      </li>
+
+    </ul>
+   
+  </nav>
+

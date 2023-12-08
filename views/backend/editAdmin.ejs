@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Korex Hospital</title>
+    <!-- base:css -->
+    <link rel="stylesheet" href="../../font/typicons.css">
+    <link rel="stylesheet" href="../../css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="../../vertical-layout-light/style.css">
+    <!-- endinject -->
+    <link rel="icon" href="../../img/Createe.jpg">
+  </head>
+  <body>
+    <div class="container-scroller">
+      <!-- partial:partials/_navbar.html -->
+      <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+
+        <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+          <a class="navbar-brand brand-logo" href="/backend/dashboard"><img src="../../img/korexlogo.jpg" alt="logo"/></a>
+          <a class="navbar-brand brand-logo-mini" href="/backend/dashboard"><img src="../../img/korexlogo.jpg" alt="logo"/></a>
+          <button class="navbar-toggler navbar-toggler align-self-center d-none d-lg-flex" type="button" data-toggle="minimize">
+            <span class="typcn typcn-th-menu"></span>
+          </button>
+        </div>
+
+        <%- include ('../partials/adminNav'); -%>
+      </nav>
+      <!-- partial -->
+      <div class="container-fluid page-body-wrapper">
+        <!-- partial:partials/_settings-panel.html -->
+        <div class="theme-setting-wrapper">
+          <div id="settings-trigger"><i class="typcn typcn-cog-outline"></i></div>
+          <div id="theme-settings" class="settings-panel">
+            <i class="settings-close typcn typcn-delete-outline"></i>
+            <p class="settings-heading">SIDEBAR SKINS</p>
+            <div class="sidebar-bg-options" id="sidebar-light-theme">
+              <div class="img-ss rounded-circle bg-light border mr-3"></div>
+              Light
+            </div>
+            <div class="sidebar-bg-options selected" id="sidebar-dark-theme">
+              <div class="img-ss rounded-circle bg-dark border mr-3"></div>
+              Dark
+            </div>
+            <p class="settings-heading mt-2">HEADER SKINS</p>
+            <div class="color-tiles mx-0 px-4">
+              <div class="tiles success"></div>
+              <div class="tiles warning"></div>
+              <div class="tiles danger"></div>
+              <div class="tiles primary"></div>
+              <div class="tiles info"></div>
+              <div class="tiles dark"></div>
+              <div class="tiles default border"></div>
+            </div>
+          </div>
+        </div>
+        <!-- partial -->
+        <!-- partial:partials/_sidebar.html -->
+        <%- include('../partials/adminSidebar'); -%>
+
+        <!-- partial -->
+        <div class="main-panel">
+          <div class="content-wrapper">
+
+              
+                <%- include (`../partials/messages`); -%>
+
+                <div class="col-12 grid-margin stretch-card">
+                    <div class="card">
+                         <div class="card-body">
+                           <h4 class="card-title">Admin Form</h4>
+                           <p class="card-description">
+                             Edit  Admin
+                           </p>
+                           <form class="forms-sample" action="/editAdmin/<%- adminResults._id %>" method="post" enctype="multipart/form-data">
+
+                             <div class="form-group">
+                               <label for="exampleInputName1">Name</label>
+                               <input type="text" class="form-control" id="exampleInputName1" name="fullName"
+                               value="<%- adminResults.fullName %>"/>
+                             </div>
+
+                             <div class="form-group">
+                               <label for="exampleInputEmail3">Username</label>
+                               <input type="text" class="form-control" id="exampleInputEmail3" name="username" 
+                               value="<%- adminResults.username %>"/>
+                             </div>
+
+                             <div class="form-group">
+                                <label for="exampleInputEmail3">Password</label>
+                                <input type="password" class="form-control" id="exampleInputEmail3" name="password" 
+                                value="<%- adminResults.password %>"/>
+                             </div>
+
+                              <div class="form-group">
+                                <label for="exampleInputCity1">Address</label>
+                                <input type="text" class="form-control" id="exampleInputCity1" name="adminAddress"
+                                value="<%- adminResults.adminAddress %>" />
+                              </div>
+
+                              <div class="form-group">
+                                <label for="exampleInputCity1">Phone Number</label>
+                                <input type="text" class="form-control" id="exampleInputCity1" name="adminNumber"
+                                value="<%- adminResults.adminNumber %>" />
+                              </div>
+
+                              <div class="form-group">
+                                <label for="exampleInputCity1">Upload Image</label>
+                                <input type="file" class="form-control" id="exampleInputCity1" name="image" accept="image/*">
+                            </div>
+                            <input type="hidden" name="existingImage" value="<%- JSON.stringify(adminResults.image || {}) %>">
+
+                            
+                            
+                            <div class="form-group">
+                                <label>Current Image</label>
+                                <div>
+                                    <% if (adminResults.image && adminResults.image.data) { %>
+                                        <img class="editImage" src="data:<%= adminResults.image.contentType %>;base64,<%= adminResults.image.data.toString('base64') %>" alt="User Image">
+                                    <% } else { %>
+                                        No image to display
+                                    <% } %>
+                                </div>
+                            </div>
+                            
+                          
+                            
+
+                              <div class="form-group">
+                                <label for="exampleInputCity1">Email</label>
+                                <input type="email" class="form-control" id="exampleInputEmail" name="email"
+                                value="<%- adminResults.email %>" />
+                              </div>
+
+                            
+
+                             <div class="form-group">
+                              <% let roles = ["Admin", "Editor"]; %>
+                              <label for="exampleSelectGender">Select Role</label>
+                              <select class="form-control" id="exampleSelectGender" name="role">
+                                <% roles.forEach((role) => { %>
+                                  <option value="<%- role %>"<% if (adminResults.role === role) { %> selected<% } %>><%- role %></option>
+                                <% }) %>
+                              </select>
+                            </div>
+                            
+                             
+                             <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                             <button class="btn btn-light">Cancel</button>
+                           </form>
+                         </div>
+                    </div>
+                </div>
+
+
+                  
+          
+                
+
+              
+            
+
+        
+         </div>
+      
+          <footer class="footer">
+            <div class="d-sm-flex justify-content-center justify-content-sm-between">
+              <span class="text-center text-sm-left d-block d-sm-inline-block">Copyright © korextech.com 2023</span>
+            </div>
+          </footer>
+
+        </div>
+
+      </div>
+ 
+    </div>
+
+    <script src="../../js/vendor.bundle.base.js"></script>
+  
+    <script src="../../js/off-canvas.js"></script>
+   
+    <script src="../../js/template.js"></script>
+  
+  
+ 
+
+ 
+
+  </body>
+</html>

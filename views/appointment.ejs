@@ -1,0 +1,186 @@
+<html>
+
+<head>
+    <title>Appointment</title>
+    <link rel="stylesheet" href="../css/account.css">
+    <link rel="stylesheet" href="../css/appoint.css">
+    <link rel="stylesheet" href="https://bootswatch.com/5/journal/bootstrap.min.css">
+    <link rel="icon" href="../img/Createe.jpg">
+    <meta charset="UTF-8">
+    <meta name="description" content="Korex hospital ">
+    <meta name="keywords"
+        content="hospital,Korex,korexhospital, Medical, Health, Healthcare, Doctor, Clinic, Care, Hospital,korex">
+    <meta name="author" content="Agboola Akorede Ibrahim">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
+</head>
+
+<body>
+    <%- include(`partials/links`); -%>
+
+        <div class="apointment-container">
+
+            <div class="header">
+                <img class="appoint-contentimage" src="../img/pexels-gus.jpg" />
+                <div class="appoint-content2">
+                    <div class="appoint-content3">
+                        <h2 class="appoint-contenttopic1">Appointment</h2>
+                        <div class="appoint-contenttopic2"><a href="/" style="color: black;"><svg xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 20" width="20" height="20">
+                                    <path
+                                        d="M19 21.0001H5C4.44772 21.0001 4 20.5524 4 20.0001V11.0001L1 11.0001L11.3273 1.61162C11.7087 1.26488 12.2913 1.26488 12.6727 1.61162L23 11.0001L20 11.0001V20.0001C20 20.5524 19.5523 21.0001 19 21.0001ZM6 19.0001H18V9.15757L12 3.70302L6 9.15757V19.0001ZM9 10.0001H15V16.0001H9V10.0001ZM11 12.0001V14.0001H13V12.0001H11Z"
+                                        fill="#0057b8" />
+                                    </path>
+                                </svg> Home</a><span class="appoint-contenttopic3"> / Appointment</span>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="content">
+                <div class="appoint-content4-left">
+                    <div class="appoint-content4-lefttopic">
+                        <h3 class="appoint-content4-lefttopic1">Book an Appointment</h3>
+                        <p class="appoint-content4-lefttopic2">Welcome to our hospital's appointment booking page, where
+                            your journey to exceptional healthcare begins! We believe that proactive healthcare is a key
+                            ingredient to a happy and fulfilling life. By taking charge of your well-being and booking
+                            an appointment with us, you're making a powerful decision to prioritize your health. Take
+                            the first step towards a healthier future. Book your appointment today and embark on a
+                            journey of wellness with Korex Hospital. We look forward to serving you and being your
+                            trusted partner in health.</p>
+                    </div>
+                    <form action="/appointment" method="post">
+
+                        <%- include (`partials/messages`); -%>
+                            <label>Full Name:</label>
+                            <br><input class="appoint-content-form" type="text" placeholder="Enter Your Name"
+                                name="flname" value="<%= typeof flname != 'undefined' ? flname : '' %>" /><br>
+
+                            <br> <label>Email:</label>
+                            <br><input class="appoint-content-form" type="email" placeholder="Enter Your Email"
+                                name="email" value="<%= typeof email != 'undefined' ? email : '' %>"><br>
+
+                            <!-- EJS TO GENERATE OUR LATE -->
+                            <% let selectDepartment=["Emergency Room Visits", "Surgical Consultations"
+                                , "Physical Therapy" , "Geriatric Care" , "Chronic Disease Management"
+                                , "Nutrition and Diet Consultations" , "Vaccination" , "Doctor Consultations"
+                                , "Cardiologists" , "Diagnostic Tests" , "Family Physicians" , "Gastroenterologists"
+                                , "Medicine Specialists" , "Antenatal care" ,"Others"] %>
+
+                                <br> <label>Department:</label>
+                                <br><select class="appoint-content-form" name="department"
+                                    value="<%= typeof department != 'undefined' ? department : '' %>">
+
+                                    <option value="">Select Department</option>
+
+                                    <% selectDepartment.forEach((so)=> { %>
+                                        <option value="<%- so %>"><%- so %></option>
+
+                                        <% }) %>
+
+                                </select><br>
+
+                                <br><label>Appointment Date:</label>
+                                <br><input class="appoint-content-form" type="date" name="date"
+                                    value="<%= typeof date != 'undefined' ? date : '' %>" /><br>
+
+
+                                <br><label>Phone Number:</label>
+                                <br><input class="appoint-content-form" type="text" name="number"
+                                    placeholder="Enter Your Phone Number"
+                                    value="<%= typeof number != 'undefined' ? number : '' %>" /><br>
+
+                                <br><label>Appointment Purpose:</label>
+                                <br><textarea class="appoint-content-form-text" name="textarea" maxlength="250"
+                                    value="<%= typeof textarea != 'undefined' ? textarea : '' %>">write your note here.....</textarea><br>
+
+                                <br>
+
+                                <button class="button"><svg>
+                                        <rect x="0" y="0" fill="none" width="100%" height="100%" />
+                                    </svg>Request an Appointment</button>
+
+
+
+                    </form>
+
+                </div>
+
+
+
+
+                <div class="appoint-content4-right">
+                    <div class="appoint-content4-right1">
+                        <h5 class="appoint-content4-righttopic1">The Heart Of Clinic</h5>
+                        <hr>
+                        <!-- <img class="appoint-rightimage" src="clinicdoc.jpg"> -->
+                        <div class="appoint-content4-right2">
+                            <img class="appoint-rightimage" src="../img/clinicdoc.jpg">
+                            <div class="appoint-content4-right2holder">
+                                <h5 class="appoint-content4-righttopic2">Dr. Jonathan Richards</h5>
+                                <p class="appoint-content4-righttopic3">Chief Medical Officer</p>
+                                <p class="appoint-content4-righttopic4">2347033731378</p>
+                            </div>
+
+                        </div>
+                        <p class="appoint-content4-righttopic5">
+                            Dr. Jonathan Richards is a highly accomplished and visionary healthcare leader, serving as
+                            the
+                            Chief Medical Officer (CMO) at Korex Hospital. With an unwavering dedication to improving
+                            patient outcomes and advancing medical excellence, Dr.Richards brings a wealth of knowledge,
+                            expertise, and strategic acumen to the forefront of healthcare administration.</p>
+                    </div>
+                    <div class="appoint-content4-rightbelow">
+                        <br>Working Time<br>
+                        <span class="deprt-time-topic"><br>Mon - Wed </span><span class="deprt-time-topic2"
+                            style="margin-left:30PX;"> 7:00AM - 11:00PM</span><br>
+                        <HR><br>
+                        <span class="deprt-time-topic"><br>Thursday </span><span class="deprt-time-topic2"
+                            style="margin-left:42PX;"> 8:00 AM - 11:30 PM</span><br>
+                        <HR><br>
+                        <span class="deprt-time-topic"><br>Fri - Sat </span><span class="deprt-time-topic2"
+                            style="margin-left:49PX;"> 8:00 AM - 11:00 PM</span><br>
+                        <HR><br>
+                        <span class="deprt-time-topic"><br> Sun - Sun </span><span class="deprt-time-topic2"
+                            style="margin-left:35PX;"> 12:00 PM - 9:00 PM</span>
+
+
+                    </div>
+
+
+
+                </div>
+
+
+            </div> <br>
+            <br>
+            <div class="main">
+                <div class="mainone">
+                    <h3 class="thirdaccountconenttopic">Knock us out today to get medical services</h3>
+                </div>
+
+                <div class="maintwo">
+                    <a href="/frontend/appointment">Book An Appointment</a>
+                </div>
+
+
+            </div>
+            <%- include(`partials/footer`); -%>
+
+        </div>
+
+
+        <script type="text/javascript" src="../js/snow.js">
+
+
+
+        </script>
+
+</body>
+
+</html>

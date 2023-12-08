@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Korex Hospital</title>
+    <!-- base:css -->
+    <link rel="stylesheet" href="../font/typicons.css">
+    <link rel="stylesheet" href="../css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="../vertical-layout-light/style.css">
+    <!-- endinject -->
+    <link rel="icon" href="../img/Createe.jpg">
+  </head>
+  <body>
+    <div class="container-scroller">
+      <!-- partial:partials/_navbar.html -->
+      <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+
+        <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+          <a class="navbar-brand brand-logo" href="/backend/dashboard"><img src="../img/korexlogo.jpg" alt="logo"/></a>
+          <a class="navbar-brand brand-logo-mini" href="/backend/dashboard"><img src="../img/korexlogo.jpg" alt="logo"/></a>
+          <button class="navbar-toggler navbar-toggler align-self-center d-none d-lg-flex" type="button" data-toggle="minimize">
+            <span class="typcn typcn-th-menu"></span>
+          </button>
+        </div>
+
+        <%- include ('../partials/adminNav'); -%>
+      </nav>
+      <!-- partial -->
+      <div class="container-fluid page-body-wrapper">
+        <!-- partial:partials/_settings-panel.html -->
+        <div class="theme-setting-wrapper">
+          <div id="settings-trigger"><i class="typcn typcn-cog-outline"></i></div>
+          <div id="theme-settings" class="settings-panel">
+            <i class="settings-close typcn typcn-delete-outline"></i>
+            <p class="settings-heading">SIDEBAR SKINS</p>
+            <div class="sidebar-bg-options" id="sidebar-light-theme">
+              <div class="img-ss rounded-circle bg-light border mr-3"></div>
+              Light
+            </div>
+            <div class="sidebar-bg-options selected" id="sidebar-dark-theme">
+              <div class="img-ss rounded-circle bg-dark border mr-3"></div>
+              Dark
+            </div>
+            <p class="settings-heading mt-2">HEADER SKINS</p>
+            <div class="color-tiles mx-0 px-4">
+              <div class="tiles success"></div>
+              <div class="tiles warning"></div>
+              <div class="tiles danger"></div>
+              <div class="tiles primary"></div>
+              <div class="tiles info"></div>
+              <div class="tiles dark"></div>
+              <div class="tiles default border"></div>
+            </div>
+          </div>
+        </div>
+        <!-- partial -->
+        <!-- partial:partials/_sidebar.html -->
+        <%- include('../partials/adminSidebar'); -%>
+
+        <!-- partial -->
+        <div class="main-panel">
+          <div class="content-wrapper">
+
+              
+                <%- include (`../partials/messages`); -%>
+
+                <div class="col-12 grid-margin stretch-card">
+                    <div class="card">
+                         <div class="card-body">
+                           <h4 class="card-title">Admin Form</h4>
+                           <p class="card-description">
+                             Add New Admin
+                           </p>
+                           <form class="forms-sample" action="/addAdmin" method="post" enctype="multipart/form-data">
+
+                             <div class="form-group">
+                               <label for="exampleInputName1">Name</label>
+                               <input type="text" class="form-control" id="exampleInputName1" name="fullName"
+                               value="<%= typeof fullName != 'undefined' ? fullName : '' %>"/>
+                             </div>
+
+                             <div class="form-group">
+                               <label for="exampleInputEmail3">Username</label>
+                               <input type="text" class="form-control" id="exampleInputEmail3" name="username" 
+                               value="<%= typeof username != 'undefined' ? username : '' %>"/>
+                             </div>
+
+                             <div class="form-group">
+                                <label for="exampleInputEmail3">Password</label>
+                                <input type="password" class="form-control" id="exampleInputEmail3" name="password" 
+                                value="<%= typeof password != 'undefined' ? password : '' %>"/>
+                              </div>
+
+                              <div class="form-group">
+                                <label for="exampleInputEmail3">Confirm Password</label>
+                                <input type="password" class="form-control" id="exampleInputEmail3" name="password2" 
+                                value="<%= typeof password2 != 'undefined' ? password2 : '' %>"/>
+                              </div>
+
+                              <div class="form-group">
+                                <label for="exampleInputCity1">Address</label>
+                                <input type="text" class="form-control" id="exampleInputCity1" name="adminAddress"
+                                value="<%= typeof adminAddress != 'undefined' ? adminAddress : '' %>" />
+                              </div>
+
+                              <div class="form-group">
+                                <label for="exampleInputCity1">Phone Number</label>
+                                <input type="text" class="form-control" id="exampleInputCity1" name="adminNumber"
+                                value="<%= typeof adminNumber != 'undefined' ? adminNumber : '' %>" />
+                              </div>
+
+                              <div class="form-group">
+                                <label for="exampleInputCity1">Upload Image</label>
+                                <input type="file" class="form-control" id="exampleInputCity1" name="image" />
+                              </div>
+
+                              <div class="form-group">
+                                <label for="exampleInputCity1">Email</label>
+                                <input type="email" class="form-control" id="exampleInputEmail" name="email"
+                                value="<%= typeof email != 'undefined' ? email : '' %>" />
+                              </div>
+
+                             <div class="form-group">
+                               <% let role=["Admin", "Editor" ] %>
+                
+                               <label for="exampleSelectGender">Select Role</label>
+                               <select class="form-control" id="exampleSelectGender" name="role"
+                                  value="<%= typeof role != 'undefined' ? role : '' %>">
+                                 
+                                      <option value="">Select Role</option>
+                
+                                     <% role.forEach((so)=> { %>
+                                         <option value="<%- so %>"><%- so %></option>
+                
+                                         <% }) %>
+                               </select>
+                             </div>
+                             
+                             <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                             <button class="btn btn-light">Cancel</button>
+                           </form>
+                         </div>
+                    </div>
+                </div>
+
+
+                  
+          
+                <div class="col-lg-12 grid-margin stretch-card">
+                  <div class="card">
+                    <div class="card-body">
+                      <h4 class="card-title">Admin List</h4>
+                      
+                      <div class="table-responsive pt-3">
+                        <table class="table table-bordered">
+                          <thead>
+                            <tr>
+                                <th>Image</th>
+                                <th>Name</th>
+                                <th>Username</th>
+                                <th>Address</th>
+                                <th>Number</th>
+                                <th style="text-align: center;">Email</th>
+                                <th>Role</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                            </tr>
+                         </thead>
+                        <tbody>
+                          <% adminResults.forEach(adminResult => { %>
+                              <tr style="background-color: white;">
+                                <td>
+                                  <% if (adminResult.image && adminResult.image.data) { %>
+                                    <img src="data:<%= adminResult.image.contentType %>;base64,<%= adminResult.image.data.toString('base64') %>" alt="User Image">
+                                  <% } else { %>
+                                    NA
+                                  <% } %>
+                                </td>
+                                
+                                
+                                  <td>
+                                    <%= adminResult.fullName %>
+                                </td>
+                                  <td>
+                                      <%= adminResult.username %>
+                                  </td>
+                                  <td>
+                                      <%= adminResult.adminAddress %>
+                                  </td>
+                                  <td>
+                                      <%= adminResult.adminNumber %>
+                                  </td>
+                                  <td>
+                                    <%= adminResult.email %>
+                                </td>
+                                  <td>
+                                      <%= adminResult.role %>
+                                  </td>  
+
+                                  <td data-label="Edit">
+                                    <a href="/backend/editAdmin/<%- adminResult._id %>">
+                                       <i class="typcn typcn-pencil menu-icon" style="color: black;"></i>
+                                    </a>
+                                  </td>
+                                  <td data-label="Delete">
+                                    <a href="/deleteAdmin/<%- adminResult._id %>">
+                                      <i class="typcn typcn-trash menu-icon" style="color: black;"></i>
+                                    </a>
+                                  </td>
+    
+                              </tr>
+                              <% }); %>
+                        </tbody>
+                        </table>
+                        <div class="pagination">
+                          <% for (let i=1; i <=totalPages; i++) { %>
+                              <a href="/backend/admin?page=<%= i %>"
+                                  class="<%= currentPage === i ? 'active' : '' %>">
+                                  <%= i %>
+                              </a>
+                              <% } %>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              
+            
+
+        
+         </div>
+      
+          <footer class="footer">
+            <div class="d-sm-flex justify-content-center justify-content-sm-between">
+              <span class="text-center text-sm-left d-block d-sm-inline-block">Copyright © korextech.com 2023</span>
+            </div>
+          </footer>
+     
+        </div>
+   
+      </div>
+  
+    </div>
+
+    <script src="../js/vendor.bundle.base.js"></script>
+  
+    <script src="../js/off-canvas.js"></script>
+
+    <script src="../js/template.js"></script>
+  
+  
+ 
+
+ 
+
+  </body>
+</html>

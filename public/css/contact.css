@@ -1,0 +1,336 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+.contact-container {
+    width: 100%;
+    margin: 10px auto;
+    padding: 10px;
+
+
+}
+
+.main-contact {
+    width: 100%;
+    min-height: 687px;
+    margin-top: 50px;
+
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+    .main-contact {
+        width: 100%;
+        min-height: 1800px;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+    .main-contact {
+        width: 100%;
+        min-height: 1322px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .main-contact {
+        width: 100%;
+        min-height: 1350px;
+    }
+}
+
+.contactconent2 {
+    width: 50%;
+    float: left;
+    margin-top: 31px;
+    margin-left: 40px;
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+    .contactconent2 {
+        width: 100%;
+        min-height: 1100px;
+        margin-left: 0px;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+    .contactconent2 {
+        width: 100%;
+        min-height: 613px;
+        margin-left: 0px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .contactconent2 {
+        width: 100%;
+        min-height: 538px;
+        margin-left: 0px;
+    }
+}
+
+.contactconenttopic {
+    width: 100%;
+    padding: 10px;
+    font-weight: 700;
+    Font-Family: "Lato", sans-serif;
+    Line-Height: 38px;
+    color: #004861;
+
+}
+
+.contactconenttopic1 {
+
+    font-weight: 700;
+    Font-Family: "Lato", sans-serif;
+    Font-Size: 19px;
+    Line-Height: 40px;
+    color: #004861;
+    padding-left: 10px;
+
+}
+
+.contactconenttopic2 {
+
+    font-weight: 300;
+    Font-Family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    Font-Size: 16px;
+    Line-Height: 40px;
+    color: #333333;
+    padding-left: 10px;
+}
+
+.contactconentbox1 {
+    width: 47%;
+    min-height: 200px;
+    float: left;
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+    .contactconentbox1 {
+        width: 90%;
+        margin-left: 5%;
+        margin-right: 5%;
+        min-height: 207px;
+        float: left;
+        text-align: center;
+
+    }
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+    .contactconentbox1 {
+        width: 47%;
+        min-height: 207px;
+        float: left;
+        text-align: center;
+        margin-left: 10;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .contactconentbox1 {
+        width: 47%;
+        min-height: 207px;
+        float: left;
+        text-align: center;
+        margin-left: 10;
+    }
+}
+
+.contactconentbox2 {
+    width: 47%;
+    min-height: 200px;
+    float: right;
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+    .contactconentbox2 {
+        width: 90%;
+        margin-left: 5%;
+        margin-right: 5%;
+        min-height: 207px;
+        float: left;
+        text-align: center;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+    .contactconentbox2 {
+        width: 47%;
+        min-height: 207px;
+        float: left;
+        text-align: center;
+        margin-left: 10;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .contactconentbox2 {
+
+        width: 47%;
+        min-height: 207px;
+        float: left;
+        text-align: center;
+        margin-left: 20;
+    }
+}
+
+.contactconentbox3 {
+    width: 47%;
+    min-height: 200px;
+    float: left;
+    clear: both;
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+    .contactconentbox3 {
+        width: 90%;
+        margin-left: 5%;
+        margin-right: 5%;
+        min-height: 207px;
+        float: left;
+        text-align: center;
+    }
+}
+
+
+@media (min-width: 481px) and (max-width: 767px) {
+    .contactconentbox3 {
+        width: 47%;
+        float: left;
+        text-align: center;
+        margin-left: 10;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .contactconentbox3 {
+        width: 47%;
+        height: 207px;
+        float: left;
+        text-align: center;
+        margin-left: 10;
+    }
+}
+
+.contactconentbox4 {
+    width: 47%;
+    min-height: 200px;
+    float: right;
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+    .contactconentbox4 {
+        width: 90%;
+        margin-left: 5%;
+        margin-right: 5%;
+        min-height: 207px;
+        float: left;
+        text-align: center;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+    .contactconentbox4 {
+        width: 47%;
+        min-height: 207px;
+        float: left;
+        text-align: center;
+        margin-left: 10;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .contactconentbox4 {
+        width: 47%;
+        min-height: 207px;
+        float: left;
+        text-align: center;
+        margin-left: 20;
+    }
+}
+
+.contactconent3 {
+    width: 40%;
+    min-height: 657px;
+    float: right;
+    margin-right: 4%;
+    margin-top: 30px;
+    border-radius: 5px;
+    background: #8dabcf;
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+    .contactconent3 {
+        width: 100%;
+        margin-right: 0%;
+        margin-top: 20px;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+    .contactconent3 {
+        width: 100%;
+        margin-right: 0%;
+        margin-top: 20px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .contactconent3 {
+        width: 100%;
+        margin-right: 0%;
+        margin-top: 20px;
+    }
+}
+
+.contactconent3-formholder {
+    width: 85%;
+    margin: auto;
+    margin-right: 7%;
+    margin-top: 0px;
+
+}
+
+.contact-form-input {
+    width: 100%;
+    padding: 15px 24px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    background: #8dabcf;
+    font-weight: 500;
+    font-size: 16px;
+    color: white;
+    outline: none;
+    resize: none;
+}
+
+.contact-form-input:focus {
+    border-color: #6a64f1;
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.05);
+}
+
+.contact-form-btn {
+    width: 100%;
+    padding: 15px;
+    border-radius: 5px;
+    border: none;
+    font-weight: 500;
+    font-size: 16px;
+    background: #0074d9;
+    color: white;
+    cursor: pointer;
+}
+
+.contact-form-btn:hover {
+    background: #111111;
+}
+
+.contact-form-input::placeholder {
+    color: white;
+}

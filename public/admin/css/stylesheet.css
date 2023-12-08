@@ -1,0 +1,355 @@
+<style>
+/* //CLIENT SLIDE TEXT */
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:600);
+
+body {
+    font-family: 'Open Sans', 'sans-serif';
+    color: #cecece;
+    background: #222;
+    overflow: hidden;
+}
+
+.item-1 {
+    position: absolute;
+    display: block;
+    top: 2em;
+    font-size: 2em;
+    animation-duration: 20s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    width: 75%;
+    min-height: 300px;
+    margin-top: 50px;
+}
+
+@media (max-width: 320px) {
+    .item-1 {
+        width: 100%;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+}
+
+@media (min-width: 321px) and (max-width: 380px) {
+    .item-1 {
+
+        width: 100%;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+}
+
+@media (min-width: 381px) and (max-width: 428px) {
+    .item-1 {
+        width: 100%;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+}
+
+@media (min-width: 429px) and (max-width: 480px) {
+    .item-1 {
+        width: 100%;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+}
+
+@media (min-width: 485px) and (max-width: 640px) {
+    .item-1 {
+
+        width: 100%;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+}
+
+@media (min-width: 641px) and (max-width: 770px) {
+    .item-1 {
+
+        width: 100%;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+}
+
+.item-2 {
+    position: absolute;
+    display: block;
+    top: 2em;
+    font-size: 2em;
+    animation-duration: 20s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    width: 75%;
+    min-height: 300px;
+    margin-top: 50px;
+}
+
+@media (max-width: 320px) {
+    .item-2 {
+        width: 100%;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+}
+
+@media (min-width: 321px) and (max-width: 380px) {
+    .item-2 {
+
+        width: 100%;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+}
+
+@media (min-width: 381px) and (max-width: 428px) {
+    .item-2 {
+        width: 100%;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+}
+
+@media (min-width: 429px) and (max-width: 480px) {
+    .item-2 {
+        width: 100%;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+}
+
+@media (min-width: 485px) and (max-width: 640px) {
+    .item-2 {
+
+        width: 100%;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+}
+
+@media (min-width: 641px) and (max-width: 770px) {
+    .item-2 {
+
+        width: 100%;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+}
+
+.item-3 {
+    position: absolute;
+    display: block;
+    top: 2em;
+    font-size: 2em;
+    animation-duration: 20s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    width: 75%;
+    min-height: 300px;
+    margin-top: 50px;
+
+}
+
+@media (max-width: 320px) {
+    .item-3 {
+        width: 100%;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+}
+
+@media (min-width: 321px) and (max-width: 380px) {
+    .item-3 {
+
+        width: 100%;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+}
+
+@media (min-width: 381px) and (max-width: 428px) {
+    .item-3 {
+        width: 100%;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+}
+
+@media (min-width: 429px) and (max-width: 480px) {
+    .item-3 {
+        width: 100%;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+}
+
+@media (min-width: 485px) and (max-width: 640px) {
+    .item-3 {
+
+        width: 100%;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+}
+
+@media (min-width: 641px) and (max-width: 770px) {
+    .item-3 {
+
+        width: 100%;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+}
+
+
+.item-1 {
+    animation-name: anim-1;
+}
+
+.item-2 {
+    animation-name: anim-2;
+}
+
+.item-3 {
+    animation-name: anim-3;
+}
+
+
+@keyframes anim-1 {
+
+    0%,
+    8.3% {
+        left: -100%;
+        opacity: 0;
+    }
+
+    8.3%,
+    25% {
+        left: 25%;
+        opacity: 1;
+    }
+
+    33.33%,
+    100% {
+        left: 110%;
+        opacity: 0;
+    }
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+    @keyframes anim-1 {
+
+        0%,
+        8.3% {
+            left: -100%;
+            opacity: 0;
+        }
+
+        8.3%,
+        25% {
+            left: 1%;
+            opacity: 1;
+        }
+
+        33.33%,
+        100% {
+            left: 110%;
+            opacity: 0;
+        }
+    }
+}
+
+
+
+@keyframes anim-2 {
+
+    0%,
+    33.33% {
+        left: 100%;
+        opacity: 0;
+    }
+
+    41.63%,
+    58.29% {
+        left: 25%;
+        opacity: 1;
+    }
+
+    66.66%,
+    100% {
+        left: 110%;
+        opacity: 0;
+    }
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+    @keyframes anim-2 {
+
+        0%,
+        33.33% {
+            left: 100%;
+            opacity: 0;
+        }
+
+        41.63%,
+        58.29% {
+            left: 1%;
+            opacity: 1;
+        }
+
+        66.66%,
+        100% {
+            left: 110%;
+            opacity: 0;
+        }
+    }
+
+}
+
+
+@keyframes anim-3 {
+
+    0%,
+    66.66% {
+        left: -100%;
+        opacity: 0;
+    }
+
+    74.96%,
+    91.62% {
+        left: 25%;
+        opacity: 1;
+    }
+
+    100% {
+        left: 110%;
+        opacity: 0;
+    }
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+    @keyframes anim-3 {
+
+        0%,
+        66.66% {
+            left: -100%;
+            opacity: 0;
+        }
+
+        74.96%,
+        91.62% {
+            left: 1%;
+            opacity: 1;
+        }
+
+        100% {
+            left: 110%;
+            opacity: 0;
+        }
+    }
+}
+
+
+</style>

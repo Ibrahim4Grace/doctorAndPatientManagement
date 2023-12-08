@@ -1,0 +1,402 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.help-container {
+    width: 100%;
+    margin: 10px auto;
+    padding: 10px;
+    position: relative;
+
+}
+
+.help-content {
+    width: 100%;
+    margin-top: 50px;
+
+
+
+}
+
+@media (min-width: 320px) and (max-width: 1024px) {
+    .help-content {
+        width: 100%;
+
+
+    }
+}
+
+
+
+.testimonial {
+    margin: 200px auto 100px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(291px, 1fr));
+    grid-gap: 20px;
+    margin-top: 53px;
+    cursor: pointer;
+
+}
+
+.testimonial .card {
+    position: relative;
+    margin: 0 auto;
+    width: 280px;
+    height: 302px;
+    background: #F1F5F8;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+    overflow: hidden;
+}
+
+.testimonial .card .layer {
+    position: absolute;
+    top: calc(100% - 2px);
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: #0057B8;
+    z-index: 1;
+    transition: 0.5s;
+}
+
+.testimonial .card:hover .layer {
+    top: 0;
+}
+
+.testimonial .card .content {
+    position: relative;
+    z-index: 2;
+}
+
+.testimonial .card .content p {
+    font-size: 18px;
+    line-height: 24px;
+}
+
+.bold {
+    width: 50%;
+}
+
+.image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: white;
+    border: 4px solid #fff;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .2);
+    margin-left: 40px;
+    margin-top: 25px;
+}
+
+.details h3 {
+    float: left;
+    margin-left: 75px;
+
+}
+
+.details {
+    color: black;
+    font-weight: 400;
+    Font-Family: "Noto Serif", serif;
+    Font-Size: 20px;
+    Line-Height: 30px;
+
+}
+
+.help-main {
+    width: 100%;
+    min-height: 700px;
+
+
+}
+
+
+@media (min-width: 320px) and (max-width: 480px) {
+    .help-main {
+        width: 100%;
+        min-height: 1276px;
+
+    }
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+    .help-main {
+        width: 100%;
+        min-height: 1320px;
+
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .help-main {
+        width: 100%;
+        min-height: 1380px;
+
+    }
+}
+
+.helpcontent1-left {
+    width: 66%;
+    min-height: 690px;
+    float: left;
+
+}
+
+@media (min-width: 320px) and (max-width: 1024px) {
+    .helpcontent1-left {
+        width: 100%;
+
+
+    }
+}
+
+
+.helpcontent1topic {
+    padding: 10px;
+    font-weight: 400;
+    font-family: "Noto Serif", serif;
+    font-size: 35px;
+    line-height: 25px;
+    color: #111111;
+    margin-top: 2px;
+    margin-left: 17px;
+}
+
+.accordion {
+    background-color: #F1F5F8;
+    color: #212529;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 19px;
+    transition: 0.4s;
+    font-weight: 400;
+    Line-Height: 33px;
+    Font-Family: Arial, sans-serif;
+
+}
+
+@media (min-width: 481px) and (max-width: 770px) {
+    .accordion {
+        font-size: 21px;
+        Font-Family: Arial, sans-serif;
+
+    }
+}
+
+@media (min-width: 771px) and (max-width: 1024px) {
+    .accordion {
+        font-size: 21px;
+        Font-Family: Arial, sans-serif;
+
+    }
+}
+
+
+
+.active,
+.accordion:hover {
+    background-color: #ccc;
+}
+
+.accordion:after {
+    content: '\25bc';
+    color: #03465f;
+    font-size: 13px;
+    float: right;
+    margin-left: 5px;
+}
+
+.active:after {
+    content: "\25b2";
+}
+
+.panel {
+    padding: 0 18px;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+}
+
+.helpcontent1topic1 {
+
+    font-weight: 400;
+    font-family: "Noto Serif", sans-serif;
+    font-size: 17px;
+    Line-Height: 28px;
+    Color: #0057B8;
+    cursor: pointer;
+}
+
+
+.helpcontent1topic2 {
+
+    font-weight: 400;
+    font-family: "Noto Serif", serif;
+    font-size: 17px;
+    Line-Height: 28px;
+    Color: #212529;
+    cursor: pointer;
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+
+    .helpcontent1topic2,
+    .helpcontent1topic1,
+    .helpcontent1topic3 {
+
+        font-size: 15px;
+
+    }
+}
+
+
+.helpcontent1topic3 {
+    font-weight: 400;
+    font-family: "Noto Sans", sans-serif;
+    font-size: 20px;
+    line-height: 28px;
+    color: #1c1c1c;
+
+}
+
+
+@media (min-width: 320px) and (max-width: 480px) {
+    .helpcontent1topic4 {
+        font-weight: 400;
+        font-family: Arial, sans-serif;
+        font-size: 20px;
+        line-height: 30px;
+        margin-top: -10px;
+        margin-left: 5px;
+    }
+}
+
+.helpcontent1topic5 {
+    font-weight: 500;
+    font-family: "Noto Sans", sans-serif;
+    font-size: 16px;
+    line-height: 24px;
+    color: #1c1c1c;
+    margin-left: 10px;
+
+}
+
+.helpcontent1topic7 {
+    font-weight: 400;
+    font-family: "Noto Sans", sans-serif;
+    font-size: 20px;
+    line-height: 1px;
+    color: #0057b8;
+    margin-left: 10px;
+}
+@media (min-width: 320px) and (max-width: 767px) {
+    .helpcontent1topic7 {
+        font-size: 18px;
+    }
+}
+
+.helpcontent1-right {
+    width: 30%;
+    height: 635px;
+    float: right;
+
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+    .helpcontent1-right {
+        width: 100%;
+        height: 522px;
+        margin-top: 60px;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+    .helpcontent1-right {
+        width: 100%;
+        height: 620px;
+
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .helpcontent1-right {
+        width: 100%;
+        height: 679px;
+
+    }
+}
+
+.helpcontentimage {
+    width: 40%;
+    padding: 10px;
+    background-repeat: no-repeat;
+
+
+}
+
+
+@media (min-width: 320px) and (max-width: 480px) {
+    .helpcontentimage {
+        width: 40%;
+
+    }
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+    .helpcontentimage {
+        width: 30%;
+
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .helpcontentimage {
+        width: 20%;
+
+    }
+}
+
+.helpcontentimage2 {
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 20px;
+}
+
+@media (min-width: 320px) and (max-width: 1024px) {
+    .helpcontentimage2 {
+        width: 50%;
+        margin-top: 10px;
+        cursor: pointer;
+    }
+}
+
+.helpcontent1topic6 {
+    font-weight: 400;
+    font-family: "Noto Sans", sans-serif;
+    font-size: 20px;
+    line-height: 88px;
+    color: #1c1c1c;
+    margin-left: 10px;
+
+}
+
+.helpcontent1topic4 {
+    font-weight: 400;
+    font-family: "Noto Sans", sans-serif;
+    font-size: 30px;
+    line-height: 45px;
+    color: #1c1c1c;
+    margin-left: 5px;
+}
+

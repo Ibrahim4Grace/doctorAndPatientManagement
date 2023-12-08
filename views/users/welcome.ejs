@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Korex Hospital</title>
+    <!-- base:css -->
+    <link rel="stylesheet" href="../font/typicons.css">
+    <link rel="stylesheet" href="../css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="../vertical-layout-light/style.css">
+    <!-- endinject -->
+    <link rel="icon" href="../img/Createe.jpg">
+  </head>
+  <body>
+    <div class="container-scroller">
+      <!-- partial:partials/_navbar.html -->
+      <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+
+        <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+          <a class="navbar-brand brand-logo" href="/users/welcome"><img src="../img/korexlogo.jpg" alt="logo"/></a>
+          <a class="navbar-brand brand-logo-mini" href="/users/welcome"><img src="../img/korexlogo.jpg" alt="logo"/></a>
+          <button class="navbar-toggler navbar-toggler align-self-center d-none d-lg-flex" type="button" data-toggle="minimize">
+            <span class="typcn typcn-th-menu"></span>
+          </button>
+        </div>
+
+        <%- include (`../partials/navigationbar`); -%>
+      </nav>
+      <!-- partial -->
+      <div class="container-fluid page-body-wrapper">
+        <!-- partial:partials/_settings-panel.html -->
+        <div class="theme-setting-wrapper">
+          <div id="settings-trigger"><i class="typcn typcn-cog-outline"></i></div>
+          <div id="theme-settings" class="settings-panel">
+            <i class="settings-close typcn typcn-delete-outline"></i>
+            <p class="settings-heading">SIDEBAR SKINS</p>
+            <div class="sidebar-bg-options" id="sidebar-light-theme">
+              <div class="img-ss rounded-circle bg-light border mr-3"></div>
+              Light
+            </div>
+            <div class="sidebar-bg-options selected" id="sidebar-dark-theme">
+              <div class="img-ss rounded-circle bg-dark border mr-3"></div>
+              Dark
+            </div>
+            <p class="settings-heading mt-2">HEADER SKINS</p>
+            <div class="color-tiles mx-0 px-4">
+              <div class="tiles success"></div>
+              <div class="tiles warning"></div>
+              <div class="tiles danger"></div>
+              <div class="tiles primary"></div>
+              <div class="tiles info"></div>
+              <div class="tiles dark"></div>
+              <div class="tiles default border"></div>
+            </div>
+          </div>
+        </div>
+        <!-- partial -->
+        <!-- partial:partials/_sidebar.html -->
+        <%- include (`../partials/userSidebar`); -%>
+        <!-- partial -->
+        <div class="main-panel">
+          <div class="content-wrapper">
+                <div class="row">
+                  <div class="col-sm-6">
+                    <h3 class="mb-0 font-weight-bold"><%= user.name %></h3>
+                    <p>Your last login: 21h ago from <%= user.address %>.</p>
+                  </div>
+    
+                </div>
+
+              
+                <%- include (`../partials/messages`); -%>
+                  <div class="flex-container">
+                  
+                      <div class="graph1">
+                        <h4>BMI Status</h4>
+                        <img src="../assets/img/graph-01.png">
+                        <div class="graph-update">Last update 6days</div>
+                      </div>
+
+                      <div class="graph2">
+                        <h4>Heart rate status</h4>
+                        <img src="../assets/img/graph-02.png">
+                        <div class="graph-update">Last update 4days</div>
+                      </div>
+
+                      <div class="graph3">  
+                        <h4>FBC Status</h4>
+                        <img src="../assets/img/graph-03.png">
+                        <div class="graph-update">Last update 3days</div>
+                      </div>  
+
+                      
+                      <div class="graph4">
+                        <h4>Weight Status</h4>
+                        <img src="../assets/img/graph-04.png">
+                         <div class="graph-update">Last update 2days</div>
+                      </div>
+                  </div>
+                  
+          
+            <div class="col-lg-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Appointment History</h4>
+                  
+                  <div class="table-responsive pt-3">
+                    <table class="table table-bordered">
+                      <thead>
+                        <tr>
+                          <th>User ID</th>
+                            <th>Name</th>
+                            <th>Department</th>
+                            <th>Appointment Date</th>
+                            <th>Phone</th>
+                            <th>Symptoms</th>
+                            <th>Purpose</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <% appointments.forEach(appointment=> { %>
+                        <tr>
+                          <td>
+                            <%= user.patientID %>
+                          </td>
+                          <td>
+                            <%= appointment.flname %>
+                          </td>
+                          <td>
+                            <%= appointment.department %>
+                          </td>
+                          <td>
+                            <%= appointment.date %>
+                          </td>
+                          <td>
+                            <%= appointment.number %>
+                          </td>
+                          <td>
+                            <%= appointment.disease %>
+                          </td>
+                          <td>
+                            <% if (appointment.textarea.length <= 15) { %>
+                                <%= appointment.textarea %>
+                            <% } else { %>
+                                <%= appointment.textarea.substring(0, 15) + "..." %>
+                                <a href="/users/readMore/<%- appointment._id %>" class="read-more" style="text-decoration: none; color: blue;">Read More</a>
+                            <% } %>
+                          </td>
+                         
+                        </tr>
+                        
+                        <% }); %>
+                      </tbody>
+                    </table>
+                    <div class="pagination">
+                      <% for (let i=1; i <=totalPages; i++) { %>
+                          <a href="/users/welcome?page=<%= i %>"
+                              class="<%= currentPage === i ? 'active' : '' %>">
+                              <%= i %>
+                          </a>
+                          <% } %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+        
+         </div>
+          <!-- content-wrapper ends -->
+          <!-- partial:partials/_footer.html -->
+          <footer class="footer">
+            <div class="d-sm-flex justify-content-center justify-content-sm-between">
+              <span class="text-center text-sm-left d-block d-sm-inline-block">Copyright © korextech.com 2023</span>
+            </div>
+          </footer>
+          <!-- partial -->
+        </div>
+        <!-- main-panel ends -->
+      </div>
+      <!-- page-body-wrapper ends -->
+    </div>
+
+    <script src="../js/vendor.bundle.base.js"></script>
+  
+    <script src="../js/off-canvas.js"></script>
+ 
+    <script src="../js/template.js"></script>
+  
+  
+ 
+
+ 
+
+  </body>
+</html>

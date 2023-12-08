@@ -1,0 +1,28 @@
+<a href="/"><img src="http://localhost:2100/img/Createe.jpg"></a>
+
+
+<div class=" topnav" id="myTopnav">
+    <a href="/">Home</a>
+    <a href="/department">Our Departments</a>
+    <a href="/appointment">Appointment</a>
+    <a href="/ourdoctors">Our Doctors</a>
+    <a href="/need-help">Need Help</a>
+    <a href="/testimony">Testimony</a>
+    <a href="/registration/login">My Account</a>
+    <a href="/contactus">Contact Us</a>
+    <a href="/aboutus">About Us</a>
+
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <i class="fa fa-bars"></i>
+    </a>
+</div>
+<script>
+    function myFunction() {
+        var x = document.getElementById("myTopnav");
+        if (x.className === "topnav") {
+            x.className += " responsive";
+        } else {
+            x.className = "topnav";
+        }
+    }
+</script>

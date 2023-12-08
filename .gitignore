@@ -1,0 +1,3 @@
+# THINGS WE DONT WANT TO COMMIT TO OUT GITHUB
+.env
+node_modules

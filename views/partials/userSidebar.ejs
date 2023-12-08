@@ -1,0 +1,91 @@
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
+  <ul class="nav">
+    <li class="nav-item">
+      <div class="d-flex sidebar-profile">
+
+        <div class="sidebar-profile-image">
+          <!-- User Image -->
+          <a href="/users/welcome">
+            <img src="data:<%= user.image.contentType %>;base64,<%= user.image.data.toString('base64') %>" alt="Image">
+          </a>  
+          <span class="sidebar-status-indicator"></span>
+        </div>
+
+        <div class="sidebar-profile-name">
+          <p class="sidebar-name">
+            <%= user.name %>
+          </p>
+          <p class="sidebar-designation" id="greeting">
+            <script src="../js/greeting.js"></script>
+          </p>
+          
+        </div>
+      </div>
+      
+      <p class="sidebar-menu-title">Dash menu</p>
+      
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">
+        <i class="typcn typcn-device-desktop menu-icon"></i>
+        <span class="menu-title">Patient ID: <%= user.patientID %> </span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">
+        <i class="typcn typcn-location menu-icon"></i>
+        <span class="menu-title"><%= user.address %></span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">
+        <i class="typcn typcn-phone menu-icon"></i>
+        <span class="menu-title">Phone: <%= user.number %></span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">
+        <i class="typcn typcn-gift menu-icon"></i>
+        <span class="menu-title">Dob: <%= user.dob %></span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">
+        <i class="typcn typcn-flow-merge menu-icon"></i>
+        <span class="menu-title">bloodGroup: <%= user.bloodGroup %></span>
+      </a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-link" href="/users/welcome">
+        <i class="typcn typcn-device-desktop menu-icon"></i>
+        <span class="menu-title">Dashboard <span class="badge badge-primary ml-3">New</span></span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/users/bookAppointment">
+        <i class="typcn typcn-briefcase menu-icon"></i>
+        <span class="menu-title">Book Appointment</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/users/appointmentHistory">
+        <i class="typcn typcn-briefcase menu-icon"></i>
+        <span class="menu-title">Appointment History</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/users/medicalRecord">
+        <i class="typcn typcn-film menu-icon"></i>
+        <span class="menu-title">Medical Record</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/signout">
+        <i class="typcn typcn-power-outline menu-icon"></i>
+        <span class="menu-title">Logout</span>
+      </a>
+    </li>
+  </ul>
+ 
+</nav>

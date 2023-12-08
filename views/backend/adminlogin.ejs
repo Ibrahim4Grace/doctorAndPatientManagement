@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Admin Page</title>
+  <!-- base:css -->
+  <link rel="stylesheet" href="../font/typicons.css">
+  <link rel="stylesheet" href="../css/vendor.bundle.base.css">
+  <link rel="stylesheet" href="../vertical-layout-light/style.css">
+  <link rel="stylesheet" href="../css/account.css">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/stylesignup.css">
+  <link rel="icon" href="../img/Createe.jpg">
+
+<body>
+    <%- include(`../partials/links`); -%>
+  <div class="container-scroller">
+    <div class="container-fluid page-body-wrapper full-page-wrapper">
+      <div class="content-wrapper d-flex align-items-center auth px-0">
+        <div class="row w-100 mx-0">
+          <div class="col-lg-4 mx-auto">
+            <div class="auth-form-light text-left py-5 px-4 px-sm-5">
+                <%- include (`../partials/messages`); -%>
+              <div class="brand-logo">
+                <img src="../img/korexlogo.jpg" alt="logo">
+              </div>
+              <div id="greeting"></div>
+              <script src="../js/admingreeting.js"></script>
+             
+              <h6 class="font-weight-light">Sign in to continue.</h6>
+              <form class="my-form" action="/backend/adminlogin" method="post">
+                
+                <div class="form-group">
+                    <input type="text" class="form-control form-control-lg" id="exampleInputEmail1" name="username" placeholder="Your username">
+                  </div>
+                <div class="form-group">
+                  <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" name="password" placeholder="Password">
+                </div>
+
+                <div class="form-group">
+                  <% let role=["Select Admin Role","Admin", "Editor"] %>
+                 
+                  <select aria-label="Role" class="form-control form-control-lg" id="exampleFormControlSelect2" name="role">
+                    <% role.forEach((so)=> { %>
+                    <option value="<%- so %>" <%= role === so ? 'selected' : '' %>><%- so %></option>
+                    <% }) %>
+                </select>
+                </div>
+                
+                <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">
+                   SIGN IN
+                </button>
+                <div class="my-2 d-flex justify-content-between align-items-center">
+                  <div class="form-check">
+                    <label class="form-check-label text-muted">
+                      <input type="checkbox" class="form-check-input">
+                      Keep me signed in
+                    </label>
+                  </div>
+             
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- content-wrapper ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+  <!-- base:js -->
+  <script src="../vendors/js/vendor.bundle.base.js"></script>
+  <!-- endinject -->
+  <!-- inject:js -->
+  <script src="../js/off-canvas.js"></script>
+  <script src="../js/hoverable-collapse.js"></script>
+  <script src="../js/template.js"></script>
+  <script src="../js/settings.js"></script>
+  <script type="text/javascript" src="../js/snow.js"></script>
+  <!-- endinject -->
+</body>
+
+</html>
