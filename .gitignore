@@ -1,3 +1,9 @@
 # THINGS WE DONT WANT TO COMMIT TO OUT GITHUB
 .env
-node_modules
+node_modules/
+*.log
+*.tmp
+.vscode/
+.idea/
+*.pid
+coverage/
