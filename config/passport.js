@@ -1,21 +1,21 @@
 
 const localStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcryptjs');
-const Admin = require('../models/admin'); // Import the Admin model
+const Admin = require('../models/admin'); 
 
 
 module.exports = (passport) => {
 
   passport.use('local-admin', new localStrategy({
-    usernameField: 'username',
-    passwordField: 'password',
+    usernameField: 'adminUsername',
+    passwordField: 'adminPassword',
     passReqToCallback: true
-}, async (req, username, password, done) => {
-    const role = req.body.role;
+}, async (req, adminUsername, adminPassword, done) => {
+    const adminRole = req.body.adminRole;
 
     try {
         // Find the admin by username
-        const admin = await Admin.findOne({ username: username });
+        const admin = await Admin.findOne({ adminUsername: adminUsername });
 
         if (!admin) {
           console.log('Admin not found');
@@ -23,14 +23,14 @@ module.exports = (passport) => {
         }
 
         // Compare the provided password with the hashed password
-        const passwordMatch = await bcrypt.compare(password, admin.password);
+        const passwordMatch = await bcrypt.compare(adminPassword, admin.adminPassword);
 
         if (!passwordMatch) {
             return done(null, false, { message: 'Password incorrect' });
         }
 
         // Check if the role matches
-        if (admin.role !== role) {
+        if (admin.adminRole !== adminRole) {
             return done(null, false, { message: 'Role incorrect' });
         }
 

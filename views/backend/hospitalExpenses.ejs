@@ -73,7 +73,7 @@
                            <p class="card-description">
                              Add New Bill
                            </p>
-                           <form class="forms-sample" action="/hospitalExpenses" method="post" enctype="multipart/form-data">
+                           <form class="forms-sample" action="/backend/hospitalExpensesPost" method="post" enctype="multipart/form-data">
 
                              <div class="form-group">
                                <label for="exampleInputName1">Expense Type</label>
@@ -165,7 +165,7 @@
                       <h4 class="card-title">Hospital Bill History</h4>
 
                       <div class="houseSearch">
-                        <form action="/searchHospitalExpenses" method="post">
+                        <form action="/backend/searchHospitalExpenses" method="post">
                             <input class="houseSearch" type="text" name="expenseType" placeholder="Search patient name...">
                             
                         </form>
@@ -186,8 +186,10 @@
                                 <th>Expense Authorized By</th>
                                 <th>Payment Method</th>
                                 <th>Payment Status</th>
+                                <% if (admin && admin.adminRole === 'Admin') { %>
                                 <th>Edit</th>
                                 <th>Delete</th>
+                                <% } %>
                             </tr>
                          </thead>
                          <tbody>
@@ -223,7 +225,7 @@
                                     <td>
                                         <%= hospitalExpense.paymentStatus %>
                                     </td>
-                                    <% if (admin && admin.role === 'Admin') { %>
+                                    <% if (admin && admin.adminRole === 'Admin') { %>
                                     <td data-label="Edit">
                                         <a href="/backend/editHospiExpense/<%- hospitalExpense._id %>">
                                             <i class="typcn typcn-pencil menu-icon" style="color: black;"></i>
@@ -231,7 +233,7 @@
                                     </td>
 
                                     <td data-label="Delete">
-                                        <a href="/deletehospital/<%- hospitalExpense._id %>">
+                                        <a href="/backend/deletehospital/<%- hospitalExpense._id %>">
                                             <i class="typcn typcn-trash menu-icon" style="color: black;"></i>
                                         </a>
                                     </td>
@@ -259,11 +261,7 @@
         
          </div>
       
-          <footer class="footer">
-            <div class="d-sm-flex justify-content-center justify-content-sm-between">
-              <span class="text-center text-sm-left d-block d-sm-inline-block">Copyright © korextech.com 2023</span>
-            </div>
-          </footer>
+         <%- include (`../partials/adminFooter`); -%>
      
         </div>
    
@@ -271,14 +269,7 @@
   
     </div>
 
-    <script src="../js/vendor.bundle.base.js"></script>
   
-    <script src="../js/off-canvas.js"></script>
-
-    <script src="../js/template.js"></script>
-  
-  
- 
 
  
 

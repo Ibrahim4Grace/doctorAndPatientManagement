@@ -42,7 +42,7 @@
                 <div class="flex-container" style="display: flex; flex-wrap: wrap;">
                     <% ourDoctors.forEach((doctor) => { %>
                         <div class="profile-wrapper">
-                            <div class="profile" style="margin: 10px;">
+                            <div class="profile">
                                 <div class="profile-image">
                                     <img src="data:<%= doctor.image.contentType %>;base64,<%= doctor.image.data.toString('base64') %>" alt="Profile" style="max-width: 100%; ">
                                 </div>

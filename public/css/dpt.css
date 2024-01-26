@@ -27,18 +27,20 @@
     padding: 10px;
     display: grid;
     margin: auto;
-    grid-template-columns: repeat(auto-fit, minmax(291px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(295px, 1fr));
     grid-gap: 10px;
     cursor: pointer;
-    
+    border: 2px solid white;
 }
 
 @media (min-width: 320px) and (max-width: 480px) {
     .deprt-content1 {
-        width: 90%;
+        width: 100%;
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(291px, 1fr));
-        margin: auto;
+        grid-template-columns: repeat(auto-fit, minmax(295px, 1fr));
+        margin: 0;
+        padding: 0px;
+        grid-gap: 20px;
     }
 }
 
@@ -46,11 +48,11 @@
     .deprt-content1 {
         width: 90%;
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(291px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(295px, 1fr));
         margin: auto;
 
     }
-}
+} 
 
 
 .box {
@@ -69,7 +71,7 @@
 @media (min-width: 320px) and (max-width: 480px) {
     .box {
 
-        height: 270px;
+        height: 275px;
         width: 90%;
         box-sizing: border-box;
         background: #fff;

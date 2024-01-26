@@ -57,7 +57,10 @@ const DocSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-
+    date_added: {
+        type: Date,
+        default: Date.now()
+    }
 
 });
 
@@ -101,6 +104,10 @@ const paymentSchema = new mongoose.Schema({
     paymentStatus: {
         type: String,
         required: true
+    },
+    date_added: {
+        type: Date,
+        default: Date.now()
     }
 });
 

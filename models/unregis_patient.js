@@ -22,7 +22,7 @@ const UnregisterSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    date: {
+    date_added: {
         type: Date,
         default: Date.now()
     }

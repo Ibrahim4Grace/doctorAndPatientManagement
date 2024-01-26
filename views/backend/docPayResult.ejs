@@ -88,7 +88,7 @@
                                 <th class="email">Email</th>
                                 <th>Payment Method</th>
                                 <th>Payment Status</th>
-                                <% if (admin && admin.role === 'Admin') { %>
+                                <% if (admin && admin.adminRole === 'Admin') { %>
                                     <th>Edit</th>
                                     <th>Delete</th>
                                     <% } %>
@@ -124,14 +124,14 @@
                                     <td>
                                         <%= doctorPay.paymentStatus %>
                                     </td>
-                                    <% if (admin && admin.role === 'Admin') { %>
+                                    <% if (admin && admin.adminRole === 'Admin') { %>
                                         <td data-label="Edit">
                                             <a href="/backend/editDoctorPayment/<%- doctorPay._id %>">
                                                 <i class="typcn typcn-pencil menu-icon" style="color: black;"></i>
                                             </a>
                                         </td>
     
-                                        <td data-label="Delete"><a href="/deleteDoctorPay/<%- doctorPay._id %>">
+                                        <td data-label="Delete"><a href="/backend/deleteDoctorPay/<%- doctorPay._id %>">
                                             <i class="typcn typcn-trash menu-icon" style="color: black;"></i>
                                             </a>
                                         </td>
@@ -156,11 +156,7 @@
         
          </div>
       
-          <footer class="footer">
-            <div class="d-sm-flex justify-content-center justify-content-sm-between">
-              <span class="text-center text-sm-left d-block d-sm-inline-block">Copyright © korextech.com 2023</span>
-            </div>
-          </footer>
+         <%- include (`../partials/adminFooter`); -%>
  
         </div>
     
@@ -168,13 +164,6 @@
      
     </div>
 
-    <script src="../js/vendor.bundle.base.js"></script>
-  
-    <script src="../js/off-canvas.js"></script>
-
-    <script src="../js/template.js"></script>
-  
-  
  
 
  

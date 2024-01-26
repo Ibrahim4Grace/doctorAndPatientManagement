@@ -42,6 +42,10 @@ const paymentSchema = new mongoose.Schema({
         ref: 'User' // Reference the User model
        
     },
+    date_added: {
+        type: Date,
+        default: Date.now()
+    }
 });
 
 const expensesSchema = new mongoose.Schema({
@@ -88,6 +92,10 @@ const expensesSchema = new mongoose.Schema({
 
         data:Buffer,
         contentType:String
+    },
+    date_added: {
+        type: Date,
+        default: Date.now()
     }
 });
 

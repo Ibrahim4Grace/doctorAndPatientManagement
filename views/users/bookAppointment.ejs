@@ -64,7 +64,7 @@
             <div class="row">
               <div class="col-sm-6">
                 <h3 class="mb-0 font-weight-bold"><%= user.name %></h3>
-                <p>Your last login: 21h ago from <%= user.address %>.</p>
+                <p>Your last login: 21h ago from <%= user.state %>.</p>
               </div>
     
             </div>
@@ -81,7 +81,7 @@
            <p class="card-description">
              Appointment Form
            </p>
-           <form class="forms-sample" action="/patientAppointment" method="post">
+           <form class="forms-sample" action="/users/bookAppointmentPost" method="post">
              <div class="form-group">
                <label for="exampleInputName1">Name</label>
                <input type="text" class="form-control" id="exampleInputName1" name="flname"
@@ -121,7 +121,7 @@
                <textarea class="form-control" id="exampleTextarea1" rows="4" name="textarea" placeholder="Your appointment purpose" maxlength="250"></textarea>
              </div>
              <div class="form-group">
-               <label for="exampleInputCity1">Appointment Number</label>
+               <label for="exampleInputCity1">Patient Number</label>
                <input type="text" class="form-control" id="exampleInputCity1" name="number" value="<%= user.number %>" readonly/>
              </div>
              <div class="form-group">
@@ -150,12 +150,8 @@
         
           </div>
           <!-- content-wrapper ends -->
-          <!-- partial:partials/_footer.html -->
-          <footer class="footer">
-            <div class="d-sm-flex justify-content-center justify-content-sm-between">
-              <span class="text-center text-sm-left d-block d-sm-inline-block">Copyright © korextech.com 2023</span>
-            </div>
-          </footer>
+          <!-- partials/_footer -->
+          <%- include (`../partials/userFooter`); -%>
           <!-- partial -->
         </div>
         <!-- main-panel ends -->
@@ -163,11 +159,6 @@
 
     </div>
 
-    <script src="../js/vendor.bundle.base.js"></script>
 
-    <script src="../js/off-canvas.js"></script>
-
-    <script src="../js/template.js"></script>
-   
   </body>
 </html>

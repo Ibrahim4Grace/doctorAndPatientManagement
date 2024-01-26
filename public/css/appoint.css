@@ -165,7 +165,6 @@
 
 .appoint-content4-right {
     width: 30%;
-
     float: right;
     margin-right: 30px;
     position: relative;
@@ -214,6 +213,7 @@
     .appoint-content4-right1 {
         width: 80%;
         margin: auto;
+     
 
     }
 }
@@ -356,7 +356,6 @@
 .appoint-content4-rightbelow {
     width: 100%;
     min-height: 450px;
-
     margin-top: 50px;
     background: #0074d9;
     color: white;
@@ -367,8 +366,7 @@
 
 @media (min-width: 320px) and (max-width: 480px) {
     .appoint-content4-rightbelow {
-
-        margin-top: 30px;
+        margin-top: 20px;
         min-height: 350px;
 
     }
@@ -377,10 +375,10 @@
 @media (min-width: 481px) and (max-width: 767px) {
     .appoint-content4-rightbelow {
         width: 80%;
-        min-height: 350px;
-        margin-left: 10%;
-        margin-top: 30px;
-        margin-right: 10%;
+        min-height: 427px;
+        margin: auto;
+    
+        
     }
 }
 

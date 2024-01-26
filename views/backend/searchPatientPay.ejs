@@ -115,7 +115,7 @@
                                     </td>
                                    
 
-                                    <td data-label="Delete"><a href="/deletePays/<%- patientPay._id %>">
+                                    <td data-label="Delete"><a href="/backend/deletePatientPayment/<%- patientPay._id %>">
                                         <i class="typcn typcn-trash menu-icon" style="color: black;"></i>
                                         </a>
                                     </td>
@@ -138,11 +138,7 @@
         
          </div>
          
-          <footer class="footer">
-            <div class="d-sm-flex justify-content-center justify-content-sm-between">
-              <span class="text-center text-sm-left d-block d-sm-inline-block">Copyright © korextech.com 2023</span>
-            </div>
-          </footer>
+         <%- include (`../partials/adminFooter`); -%>
  
         </div>
 
@@ -150,13 +146,7 @@
 
     </div>
   
-    <script src="../js/vendor.bundle.base.js"></script>
-  
-    <script src="../js/off-canvas.js"></script>
 
-    <script src="../js/template.js"></script>
-  
-  
  
 
  

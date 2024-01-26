@@ -70,10 +70,10 @@
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">
                       <div class="card-body">
-                        <h4 class="card-title">Doctors List</h4>
+                        <h4 class="card-title">Unregistered Patients List</h4>
 
                         <div class="houseSearch">
-                          <form action="/searchUnregisterPatient" method="post">
+                          <form action="/backend/searchUnregisterPatient" method="post">
                               <input class="houseSearch" type="text" name="name" placeholder="Search Unregister Patient Name...">
                               
                           </form>
@@ -85,6 +85,7 @@
                             <thead>
                               <tr>
                                 <th>Name</th>
+                                <th>Username</th>
                                 <th>Email</th>
                                 <th>Gender</th>
                                 <th>Age</th>
@@ -98,27 +99,18 @@
                         <%if (unregisteredPatient.length> 0) {%>
                             <% unregisteredPatient.forEach(unregistered => { %>
                                 <tr style="background-color: white;">
-                                    <td>
-                                        <%= unregistered.name %>
-                                    </td>
-                                    <td>
-                                        <%= unregistered.email %>
-                                    </td>
-                                    <td>
-                                        <%= unregistered.gender %>
-                                    </td>
-                                    <td>
-                                        <%= unregistered.dob %>
-                                    </td>
-                                    <td>
-                                        <%= unregistered.number %>
-                                    </td>
+                                    <td> <%= unregistered.name %> </td>
+                                    <td><%= unregistered.username %></td>
+                                    <td><%= unregistered.email %> </td>
+                                    <td> <%= unregistered.gender %> </td>
+                                    <td><%= unregistered.dob %> </td>
+                                    <td>  <%= unregistered.number %></td>
                                     <td>
                                         <a href="/backend/registerPatient/<%= unregistered._id %>">Click to Register</a>
                                     </td>
 
                                     <td data-label="Delete"><a
-                                            href="/delete_unregister/<%- unregistered._id %>">
+                                            href="/backend/deleteUnregisteredPatient/<%- unregistered._id %>">
                                             <i class="typcn typcn-trash menu-icon" style="color: black;"></i>
                                         </a>
                                     </td>
@@ -155,11 +147,7 @@
         
          </div>
    
-          <footer class="footer">
-            <div class="d-sm-flex justify-content-center justify-content-sm-between">
-              <span class="text-center text-sm-left d-block d-sm-inline-block">Copyright © korextech.com 2023</span>
-            </div>
-          </footer>
+         <%- include (`../partials/adminFooter`); -%>
 
         </div>
    
@@ -167,14 +155,7 @@
 
     </div>
 
-    <script src="../js/vendor.bundle.base.js"></script>
   
-    <script src="../js/off-canvas.js"></script>
-
-    <script src="../js/template.js"></script>
-  
-  
- 
 
  
 

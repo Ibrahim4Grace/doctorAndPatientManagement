@@ -64,7 +64,7 @@
             <div class="row">
               <div class="col-sm-6">
                 <h3 class="mb-0 font-weight-bold"><%= user.name %></h3>
-                <p>Your last login: 21h ago from <%= user.address %>.</p>
+                <p>Your last login: 21h ago from <%= user.state %>.</p>
               </div>
     
             </div>
@@ -81,68 +81,108 @@
            <p class="card-description">
              Appointment Form
            </p>
-           <form class="forms-sample" action="/patientAppointment" method="post">
-             <div class="form-group">
-               <label for="exampleInputName1">Name</label>
-               <input type="text" class="form-control" id="exampleInputName1" name="flname"
-               value="<%= user.name %>" readonly/>
-             </div>
-             <div class="form-group">
-               <label for="exampleInputEmail3">Email address</label>
-               <input type="email" class="form-control" id="exampleInputEmail3" name="email" value="<%= user.email %>" readonly>
-             </div>
-             <div class="form-group">
-               <% let selectDepartment=["Emergency Room Visits", "Surgical Consultations"
-               , "Physical Therapy" , "Geriatric Care" , "Chronic Disease Management"
-               , "Nutrition and Diet Consultations" , "Vaccination"
-               , "Consultations" , "Cardiologists" , "Diagnostic Tests"
-               , "Family Physicians" , "Gastroenterologists" , "Medicine Specialists"
-               , "Antenatal care","Pregnancy" ,"Others" ] %>
+           <form action="/users/editMyProfilePost" method="post" enctype="multipart/form-data">
 
-               <label for="exampleSelectGender">Department</label>
-               <select class="form-control" id="exampleSelectGender" name="department"
-                  value="<%= typeof department != 'undefined' ? department : '' %>">
-                 
-                      <option value="">Select Department</option>
+            <div class="form-group">
+                <label for="exampleInputName1">Patient Name</label>
+                   <input type="text" class="form-control" 
+                   name="name" value="<%- user.name %>"/>
+            </div>
 
-                     <% selectDepartment.forEach((so)=> { %>
-                         <option value="<%- so %>"><%- so %></option>
+            <div class="form-group">
+              <label for="exampleInputEmail3">Patient username</label>
+               <input type="text"  class="form-control" 
+               name="username" value="<%- user.username %>"/>
+            </div>
+            
+            <div class="form-group">
+              <label for="exampleInputEmail3">Patient Email</label>
+               <input type="email"  class="form-control" name="email"
+               value="<%- user.email %>"/>
+            </div>
 
-                         <% }) %>
-               </select>
-             </div>
-             <div class="form-group">
-               <label for="exampleInputCity1">Appointment Date</label>
-               <input type="date" class="form-control" id="exampleInputCity1" name="date"
-               value="<%= typeof date != 'undefined' ? date : '' %>" />
-             </div>
-             <div class="form-group">
-               <label for="exampleTextarea1">Textarea</label>
-               <textarea class="form-control" id="exampleTextarea1" rows="4" placeholder="Your appointment purpose" maxlength="250"></textarea>
-             </div>
-             <div class="form-group">
-               <label for="exampleInputCity1">Appointment Number</label>
-               <input type="text" class="form-control" id="exampleInputCity1" name="number" value="<%= user.number %>" readonly />
-             </div>
-             <div class="form-group">
-               <% let selectDisease=["Fever", "UTI" , "Cancer" , "STD" , "Diabetes" , "Dental"
-               , "Malaria" , "Consultations" ,"HIV/AIDS" ,"Pregnancy" , "Others" ] %>
+            <div class="form-group">
+                <% let patientGender=["Male", "Female" ] %>
 
-               <label for="exampleSelectGender">Disease</label>
-               <select class="form-control" id="exampleSelectGender" name="disease"
-                  value="<%= typeof disease != 'undefined' ? disease : '' %>">
-                 
-                  <option value="">Select Disease</option>
-
-                  <% selectDisease.forEach((so)=> { %>
-                      <option value="<%- so %>"><%- so %></option>
-
+                 <label for="exampleSelectGender">Patient Gender</label>
+                <select class="form-control" name="gender">
+                    <% patientGender.forEach((gender) => { %>
+                        <option value="<%- gender %>"<% if (user.gender === gender) { %> selected<% } %>><%- gender %></option>
                       <% }) %>
-               </select>
-             </div>
-             <button type="submit" class="btn btn-primary mr-2">Submit</button>
-             <button class="btn btn-light">Cancel</button>
-           </form>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="exampleInputCity1">Patient DOB</label>
+                  <input type="date" class="form-control" name="dob" 
+                  value="<%- user.dob %>"/>
+
+            </div>
+
+            <div class="form-group">
+               <label for="exampleInputEmail3">Patient Number</label>
+               <input type="text" class="form-control"  name="number" 
+               value="<%- user.number %>"/>
+            </div>
+
+            <div class="form-group">
+                <label for="exampleInputCity1">Patient Address</label>
+                  <input type="text" class="form-control"  name="address"
+                  value="<%- user.address %>"/>
+            </div>
+
+            
+            <div class="form-group">
+              <label for="exampleInputCity1">Patient City</label>
+                <input type="text" class="form-control"  name="city"
+                value="<%- user.city %>"/>
+            </div>
+
+          
+          <div class="form-group">
+            <label for="exampleInputCity1">Patient State</label>
+              <input type="text" class="form-control"  name="state"
+              value="<%- user.state %>"/>
+          </div>
+
+            <div class="form-group">
+                <label for="exampleInputCity1">Patient Password</label>
+                  <input type="password" class="form-control"  name="password"
+                  value=""/>
+            </div>
+
+            <div class="form-group">
+                <label for="exampleInputCity1">Occupation</label>
+                  <input type="text" class="form-control"  name="occupation"
+                  value="<%- user.occupation %>"/>
+            </div>
+
+            <div class="form-group">
+                <label for="exampleInputCity1">Upload Image</label>
+                <input type="file" class="form-control" name="image" accept="image/*">
+            </div>
+            <input type="hidden" name="existingImage" value="<%- JSON.stringify(user.image || {}) %>">
+            
+            <div class="form-group">
+                <label>Current Image</label>
+                <div>
+                    <% if (user.image && user.image.data) { %>
+                        <img class="editImage" src="data:<%= user.image.contentType %>;base64,<%= user.image.data.toString('base64') %>" alt="User Image">
+                    <% } else { %>
+                        No image to display
+                    <% } %>
+                </div>
+            </div>
+           
+            <div class="form-group">
+                <label for="exampleInputCity1">Patient Blood Group:</label>
+                  <input type="text" class="form-control" name="bloodGroup"
+                  value="<%- user.bloodGroup %>"/>
+            </div>
+         
+         <button type="submit" class="btn btn-primary mr-2">Submit</button>
+         <button class="btn btn-light">Cancel</button>
+       </form>
          </div>
     </div>
 </div>
@@ -150,24 +190,14 @@
         
           </div>
           <!-- content-wrapper ends -->
-          <!-- partial:partials/_footer.html -->
-          <footer class="footer">
-            <div class="d-sm-flex justify-content-center justify-content-sm-between">
-              <span class="text-center text-sm-left d-block d-sm-inline-block">Copyright © korextech.com 2023</span>
-            </div>
-          </footer>
-          <!-- partial -->
+         <!-- partials/_footer -->
+         <%- include (`../partials/userFooter`); -%>
+         <!-- partial -->
         </div>
         <!-- main-panel ends -->
       </div>
 
     </div>
-
-    <script src="../js/vendor.bundle.base.js"></script>
-
-    <script src="../js/off-canvas.js"></script>
-
-    <script src="../js/template.js"></script>
    
   </body>
 </html>

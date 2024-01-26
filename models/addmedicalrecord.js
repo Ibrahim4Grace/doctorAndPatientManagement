@@ -15,10 +15,13 @@ const MedicalRecordSchema = new mongoose.Schema({
         ref: 'User', // Reference the User model
        
     },
-    
     date: {
         type: String,
         required: true
+    },
+    date_added: {
+        type: Date,
+        default: Date.now()
     }
 
 });

@@ -21,41 +21,50 @@ const UserSchema = new mongoose.Schema({
         required: true
     },
     address: {
-
         type: String
     },
-    password: {
-
+    city: {
+        type: String
+    },
+    state: {
+        type: String
+    },
+    username: {
         type: String,
         required: true
     },
-
+    password: {
+        type: String,
+        required: true
+    },
     occupation: {
-
         type: String
-      
     },
     diagnosis: {
 
         type: String
     },
     treatment: {
-
-        type: String
-        
+        type: String  
     },
     patientID: {
-
         type: String 
     },
     image: {
-
         data: Buffer,
         contentType: String
     },
     bloodGroup: {
 
         type: String
+    },
+    failedLoginAttempts: {   
+        type: Number,
+        default: 0 
+    },
+    accountLocked: { 
+        type: Boolean, 
+        default: false 
     },
     date: {
         type: Date,

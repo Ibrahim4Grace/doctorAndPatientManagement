@@ -73,7 +73,7 @@
                            <p class="card-description">
                             Add New Payment
                            </p>
-                           <form action="/patientPayment" method="post">
+                           <form action="/backend/patientPaymentPost" method="post">
 
                              <div class="form-group">
                                <label for="exampleInputName1">Patient Name</label>
@@ -150,7 +150,7 @@
                         <h4 class="card-title">Patient Payment History</h4>
 
                         <div class="houseSearch">
-                          <form action="/searchPatientPay" method="post">
+                          <form action="/backend/searchPatientPay" method="post">
                               <input class="houseSearch" type="text" name="patientName" placeholder="Search patient name...">
                               
                           </form>
@@ -198,8 +198,8 @@
                                         <%= patientPay.paymentStatus %>
                                     </td>
                                    
-                                    <% if (admin && admin.role === 'Admin') { %>
-                                    <td data-label="Delete"><a href="/deletePays/<%- patientPay._id %>">
+                                    <% if (admin && admin.adminRole === 'Admin') { %>
+                                    <td data-label="Delete"><a href="/backend/deletePatientPayment/<%- patientPay._id %>">
                                         <i class="typcn typcn-trash menu-icon" style="color: black;"></i>
                                         </a>
                                     </td>
@@ -229,11 +229,7 @@
         
          </div>
       
-          <footer class="footer">
-            <div class="d-sm-flex justify-content-center justify-content-sm-between">
-              <span class="text-center text-sm-left d-block d-sm-inline-block">Copyright © korextech.com 2023</span>
-            </div>
-          </footer>
+         <%- include (`../partials/adminFooter`); -%>
      
         </div>
    
@@ -241,14 +237,7 @@
   
     </div>
 
-    <script src="../js/vendor.bundle.base.js"></script>
-  
-    <script src="../js/off-canvas.js"></script>
 
-    <script src="../js/template.js"></script>
-  
-  
- 
 
  
 

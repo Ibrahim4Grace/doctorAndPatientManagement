@@ -73,7 +73,7 @@
                            <p class="card-description">
                               Edit Doctor
                            </p>
-                            <form class="forms-sample" action="/edit-doctor/<%- doctor._id %>" method="post" enctype="multipart/form-data">
+                            <form class="forms-sample" action="/backend/editDoctorProfilePost/<%- doctor._id %>" method="post" enctype="multipart/form-data">
 
                                 <div class="form-group">
                                     <label for="exampleInputName1">Doctor Name</label>
@@ -201,11 +201,7 @@
         
          </div>
    
-          <footer class="footer">
-            <div class="d-sm-flex justify-content-center justify-content-sm-between">
-              <span class="text-center text-sm-left d-block d-sm-inline-block">Copyright © korextech.com 2023</span>
-            </div>
-          </footer>
+         <%- include (`../partials/adminFooter`); -%>
  
         </div>
  
@@ -213,14 +209,7 @@
 
     </div>
  
-    <script src="../../js/vendor.bundle.base.js"></script>
-  
-    <script src="../../js/off-canvas.js"></script>
 
-    <script src="../../js/template.js"></script>
-  
-  
- 
 
  
 

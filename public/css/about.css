@@ -270,3 +270,7 @@
         min-height: 249px;
     }
 }
+a{
+    text-decoration: none;
+    color: #000000;
+}

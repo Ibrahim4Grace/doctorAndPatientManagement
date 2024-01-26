@@ -12,7 +12,7 @@
   
           <div class="sidebar-profile-name">
             <p class="sidebar-name">
-              <%=  admin.fullName  %>
+              <%=  admin.adminFullName  %>
             </p>
             <p class="sidebar-designation" id="greeting">
               <script src="../js/admingreeting.js"></script>
@@ -32,7 +32,7 @@
         </a>
       </li>
 
-      <% if (admin && admin.role === 'Admin') { %>
+      <% if (admin && admin.adminRole === 'Admin') { %>
 
         <li class="nav-item">
           <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
@@ -50,7 +50,7 @@
       <% } %>
 
       <li class="nav-item">
-        <a class="nav-link" href="/backend/patient-appoint">
+        <a class="nav-link" href="/backend/patientAppointment">
           <i class="typcn typcn-briefcase menu-icon"></i>
           <span class="menu-title">All Appointments</span>
         </a>
@@ -65,8 +65,8 @@
         </a>
         <div class="collapse" id="auth">
           <ul class="nav flex-column sub-menu">
-            <li class="nav-item"> <a class="nav-link" href="/backend/add-doctor">Add Doctor</a></li>
-            <li class="nav-item"> <a class="nav-link" href="/backend/all-doctor">All Doctors</a></li>
+            <li class="nav-item"> <a class="nav-link" href="/backend/addDoctor">Add Doctor</a></li>
+            <li class="nav-item"> <a class="nav-link" href="/backend/allDoctor">All Doctors</a></li>
           </ul>
         </div>
       </li>
@@ -102,14 +102,10 @@
         </div>
       </li>
 
-
       <li class="nav-item">
-
-        <form class="nav-link"  action="/logout?_method=DELETE" method="post">
-          <li class="typcn typcn-power text-primary"> <button type="submit" class="logouts-btns">Logout</button></li>
-       
-       </form>
-
+        <form class="nav-link" action="/backend/logout" method="post">
+                <button type="submit" class="logouts-btns">Logout</button>
+        </form>
       </li>
 
     </ul>

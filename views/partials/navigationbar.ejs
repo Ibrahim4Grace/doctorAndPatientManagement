@@ -105,10 +105,14 @@
           <i class="typcn typcn-cog text-primary"></i>
           Settings
           </a>
-          <a class="dropdown-item"  href="/signout">
+          <!-- <a class="dropdown-item" href="/users/logout">
           <i class="typcn typcn-power text-primary"></i>
           Logout
-          </a>
+          </a> -->
+          <form class="dropdown-item"  action="/users/logout" method="post">
+            <li class="typcn typcn-power text-primary"> <button type="submit" class="logout-btns">Logout</button></li>
+         
+         </form>
         </div>
       </li>
     </ul>

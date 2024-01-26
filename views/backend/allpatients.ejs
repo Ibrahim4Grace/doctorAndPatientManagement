@@ -74,7 +74,7 @@
                       <h4 class="card-title">Registered Patients List</h4>
 
                       <div class="houseSearch">
-                        <form action="/searchPatient" method="post">
+                        <form action="/backend/searchPatient" method="post">
                             <input class="houseSearch" type="text" name="name" placeholder="Search patient name...">
                             
                         </form>
@@ -88,6 +88,7 @@
                                 <th>Image</th>
                                 <th>Patient ID</th>
                                 <th>Patient Name</th>
+                                <th>Patient Username</th>
                                 <th>Patient Number</th>
                                 <th>Occupation</th>
                                 <th>Patient Profile</th>
@@ -107,19 +108,11 @@
                                             <p>No Image Available</p>
                                         <% } %>
                                     </td>
-                                    <td>
-                                        <%= patient.patientID %>
-                                    </td>
-                                    
-                                    <td>
-                                        <%= patient.name %>
-                                    </td>
-                                    <td>
-                                        <%= patient.number %>
-                                    </td>
-                                    <td>
-                                        <%= patient.occupation %>
-                                    </td>
+                                    <td><%= patient.patientID %></td>
+                                    <td><%= patient.name %> </td>
+                                    <td><%= patient.username %> </td>
+                                    <td><%= patient.number %></td>
+                                    <td>  <%= patient.occupation %> </td>
                                     <td data-label="patient_profile"><a
                                         href="/backend/viewPatient/<%- patient._id %>">
                                         View
@@ -137,7 +130,7 @@
                                         </a>
                                     </td>
                                     <td data-label="Delete">
-                                            <a href="/deleteRegisteredPatient/<%- patient._id %>">
+                                            <a href="/backend/deleteRegisteredPatient/<%- patient._id %>">
                                               <i class="typcn typcn-trash menu-icon" style="color: black;"></i>
                                             </a>
                                     </td>
@@ -165,11 +158,7 @@
         
          </div>
      
-          <footer class="footer">
-            <div class="d-sm-flex justify-content-center justify-content-sm-between">
-              <span class="text-center text-sm-left d-block d-sm-inline-block">Copyright © korextech.com 2023</span>
-            </div>
-          </footer>
+         <%- include (`../partials/adminFooter`); -%>
 
         </div>
 
@@ -177,14 +166,7 @@
 
     </div>
 
-    <script src="../js/vendor.bundle.base.js"></script>
-  
-    <script src="../js/off-canvas.js"></script>
- 
-    <script src="../js/template.js"></script>
-  
-  
- 
+
 
  
 

@@ -93,6 +93,10 @@
                             <p>
                                 <%=ourPatient.name%>
                             </p>
+                            <li><strong>Patient Username</strong></li>
+                            <p>
+                                <%=ourPatient.username%>
+                            </p>
                             <li><strong>Patient Email</strong></li>
                             <p>
                                 <%=ourPatient.email%>
@@ -112,6 +116,14 @@
                             <li><strong>Patient Address</strong></li>
                             <p>
                                 <%=ourPatient.address%>
+                            </p>
+                            <li><strong>Patient City</strong></li>
+                            <p>
+                                <%=ourPatient.city%>
+                            </p>
+                            <li><strong>Patient State</strong></li>
+                            <p>
+                                <%=ourPatient.state%>
                             </p>
                             <li><strong>Occupation</strong></li>
                             <p>
@@ -163,11 +175,7 @@
         
             </div>
    
-          <footer class="footer">
-            <div class="d-sm-flex justify-content-center justify-content-sm-between">
-              <span class="text-center text-sm-left d-block d-sm-inline-block">Copyright © korextech.com 2023</span>
-            </div>
-          </footer>
+            <%- include (`../partials/adminFooter`); -%>
 
         </div>
 
@@ -175,16 +183,8 @@
 
     </div>
 
-    <script src="../../js/vendor.bundle.base.js"></script>
-  
-    <script src="../../js/off-canvas.js"></script>
-    <!-- <script src="../js/hoverable-collapse.js"></script> -->
-    <script src="../../js/template.js"></script>
-  
-  
- 
 
- 
+
 
   </body>
 </html>

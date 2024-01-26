@@ -99,7 +99,7 @@
      
         <a class="nav-link dropdown-toggle  pl-0 pr-0" href="#" data-toggle="dropdown" id="profileDropdown">
           <img src="data:<%= admin.image.contentType %>;base64,<%= admin.image.data.toString('base64') %>" alt="User Image">
-          <span class="nav-profile-name"><%= admin.fullName %></span>
+          <span class="nav-profile-name"><%= admin.adminFullName%></span>
         </a>
 
         
@@ -108,7 +108,7 @@
           <i class="typcn typcn-cog text-primary"></i>
           Settings
           </a>
-          <form class="dropdown-item"  action="/logout?_method=DELETE" method="post">
+          <form class="dropdown-item"  action="/backend/logout" method="post">
             <li class="typcn typcn-power text-primary"> <button type="submit" class="logout-btns">Logout</button></li>
          
          </form>

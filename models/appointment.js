@@ -41,6 +41,10 @@ const AppointSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User', // This should match the name of your User model
     },
+    date_added: {
+        type: Date,
+        default: Date.now()
+    }
 
 });
 
@@ -71,7 +75,7 @@ const ConSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    date: {
+    date_added: {
         type: Date,
         default: Date.now()
     }

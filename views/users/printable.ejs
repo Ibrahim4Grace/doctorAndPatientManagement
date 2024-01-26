@@ -63,7 +63,7 @@
                 <div class="row">
                   <div class="col-sm-6">
                     <h3 class="mb-0 font-weight-bold"><%= user.name %></h3>
-                    <p>Your last login: 21h ago from <%= user.address %>.</p>
+                    <p>Your last login: 21h ago from <%= user.state %>.</p>
                   </div>
     
                 </div>
@@ -93,24 +93,15 @@
 
          </div>
           <!-- content-wrapper ends -->
-          <!-- partial:partials/_footer.html -->
-          <footer class="footer">
-            <div class="d-sm-flex justify-content-center justify-content-sm-between">
-              <span class="text-center text-sm-left d-block d-sm-inline-block">Copyright © korextech.com 2023</span>
-            </div>
-          </footer>
-          <!-- partial -->
+              <!-- partials/_footer -->
+              <%- include (`../partials/userFooter`); -%>
+              <!-- partial -->
         </div>
         <!-- main-panel ends -->
       </div>
       <!-- page-body-wrapper ends -->
     </div>
-  
-    <script src="../../js/vendor.bundle.base.js"></script>
 
-    <script src="../../js/off-canvas.js"></script>
-
-    <script src="../../js/template.js"></script>
  
 
   </body>

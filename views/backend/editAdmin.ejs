@@ -73,30 +73,30 @@
                            <p class="card-description">
                              Edit  Admin
                            </p>
-                           <form class="forms-sample" action="/editAdmin/<%- adminResults._id %>" method="post" enctype="multipart/form-data">
+                           <form class="forms-sample" action="/backend/editAdmin/<%- adminResults._id %>" method="post" enctype="multipart/form-data">
 
                              <div class="form-group">
                                <label for="exampleInputName1">Name</label>
-                               <input type="text" class="form-control" id="exampleInputName1" name="fullName"
-                               value="<%- adminResults.fullName %>"/>
+                               <input type="text" class="form-control" id="exampleInputName1" name="adminFullName"
+                               value="<%- adminResults.adminFullName %>"/>
                              </div>
 
                              <div class="form-group">
                                <label for="exampleInputEmail3">Username</label>
-                               <input type="text" class="form-control" id="exampleInputEmail3" name="username" 
-                               value="<%- adminResults.username %>"/>
+                               <input type="text" class="form-control" id="exampleInputEmail3" name="adminUsername" 
+                               value="<%- adminResults.adminUsername %>"/>
                              </div>
 
                              <div class="form-group">
                                 <label for="exampleInputEmail3">Password</label>
-                                <input type="password" class="form-control" id="exampleInputEmail3" name="password" 
-                                value="<%- adminResults.password %>"/>
+                                <input type="password" class="form-control" id="exampleInputEmail3" name="adminPassword" 
+                                value="<%- adminResults.adminPassword %>"/>
                              </div>
 
                               <div class="form-group">
-                                <label for="exampleInputCity1">Address</label>
-                                <input type="text" class="form-control" id="exampleInputCity1" name="adminAddress"
-                                value="<%- adminResults.adminAddress %>" />
+                                <label for="exampleInputCity1">Email Address</label>
+                                <input type="email" class="form-control" id="exampleInputCity1" name="adminEmail"
+                                value="<%- adminResults.adminEmail %>" />
                               </div>
 
                               <div class="form-group">
@@ -106,13 +106,58 @@
                               </div>
 
                               <div class="form-group">
+                                <label for="exampleInputCity1">Home Address</label>
+                                <input type="text" class="form-control" id="exampleInputCity1" name="adminAddress"
+                                value="<%- adminResults.adminAddress %>" />
+                              </div>
+
+                              <div class="form-group">
+                                <label for="exampleInputCity1">City</label>
+                                <input type="text" class="form-control" id="exampleInputCity1" name="adminCity"
+                                value="<%- adminResults.adminCity %>" />
+                              </div>
+
+                              <div class="form-group">
+                                <label for="exampleInputCity1">State</label>
+                                <input type="text" class="form-control" id="exampleInputCity1" name="adminState"
+                                value="<%- adminResults.adminState %>" />
+                              </div>
+
+                              <div class="form-group">
+                                <% let roles = ["Admin", "Editor"]; %>
+                                <label for="exampleSelectGender">Select Role</label>
+                                <select class="form-control" id="exampleSelectGender" name="adminRole">
+                                  <% roles.forEach((role) => { %>
+                                    <option value="<%- role %>"<% if (adminResults.adminRole === role) { %> selected<% } %>><%- role %></option>
+                                  <% }) %>
+                                </select>
+                              </div>
+                              
+
+                              <div class="form-group">
+                                <label for="exampleInputCity1">Dob</label>
+                                <input type="date" class="form-control" id="exampleInputCity1" name="adminDob"
+                                value="<%- adminResults.adminDob %>" />
+                              </div>
+
+                              <div class="form-group">
+                                <label for="exampleInputCity1">Emergency Name</label>
+                                <input type="text" class="form-control" id="exampleInputCity1" name="adminEmergencyName"
+                                value="<%- adminResults.adminEmergencyName %>" />
+                              </div>
+                              
+                              <div class="form-group">
+                                <label for="exampleInputCity1">Emergency Number</label>
+                                <input type="text" class="form-control" id="exampleInputCity1" name="adminEmergencyNumber"
+                                value="<%- adminResults.adminEmergencyNumber %>" />
+                              </div>
+
+                              <div class="form-group">
                                 <label for="exampleInputCity1">Upload Image</label>
                                 <input type="file" class="form-control" id="exampleInputCity1" name="image" accept="image/*">
-                            </div>
+                              </div>
                             <input type="hidden" name="existingImage" value="<%- JSON.stringify(adminResults.image || {}) %>">
 
-                            
-                            
                             <div class="form-group">
                                 <label>Current Image</label>
                                 <div>
@@ -123,29 +168,7 @@
                                     <% } %>
                                 </div>
                             </div>
-                            
-                          
-                            
-
-                              <div class="form-group">
-                                <label for="exampleInputCity1">Email</label>
-                                <input type="email" class="form-control" id="exampleInputEmail" name="email"
-                                value="<%- adminResults.email %>" />
-                              </div>
-
-                            
-
-                             <div class="form-group">
-                              <% let roles = ["Admin", "Editor"]; %>
-                              <label for="exampleSelectGender">Select Role</label>
-                              <select class="form-control" id="exampleSelectGender" name="role">
-                                <% roles.forEach((role) => { %>
-                                  <option value="<%- role %>"<% if (adminResults.role === role) { %> selected<% } %>><%- role %></option>
-                                <% }) %>
-                              </select>
-                            </div>
-                            
-                             
+ 
                              <button type="submit" class="btn btn-primary mr-2">Submit</button>
                              <button class="btn btn-light">Cancel</button>
                            </form>
@@ -164,11 +187,7 @@
         
          </div>
       
-          <footer class="footer">
-            <div class="d-sm-flex justify-content-center justify-content-sm-between">
-              <span class="text-center text-sm-left d-block d-sm-inline-block">Copyright © korextech.com 2023</span>
-            </div>
-          </footer>
+         <%- include (`../partials/adminFooter`); -%>
 
         </div>
 
@@ -176,12 +195,6 @@
  
     </div>
 
-    <script src="../../js/vendor.bundle.base.js"></script>
-  
-    <script src="../../js/off-canvas.js"></script>
-   
-    <script src="../../js/template.js"></script>
-  
   
  
 

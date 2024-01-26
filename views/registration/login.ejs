@@ -29,11 +29,11 @@
               <script src="../js/greeting.js"></script>
              
               <h6 class="font-weight-light">Sign in to continue.</h6>
-              <form class="pt-3" action="/login" method="post">
+              <form class="pt-3" action="/registration/userLoginPagePost" method="post">
                 
                 <div class="form-group">
-                    <input type="email" class="form-control form-control-lg" id="exampleInputEmail1" name="email" placeholder="Your Email"
-                    value="<%= typeof email != 'undefined' ? email : '' %>">
+                    <input type="text" class="form-control form-control-lg" id="exampleInputEmail1" name="username" placeholder="Your username"
+                    value="<%= typeof username != 'undefined' ? username : '' %>">
                   </div>
                 <div class="form-group">
                   <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" name="password" placeholder="Password"
@@ -52,11 +52,11 @@
                   </div>
                   <a href="/registration/forgetPassword" class="auth-link text-black">Forgot password?</a>
                 </div>
-                <div class="mb-2">
+                <!-- <div class="mb-2">
                   <button type="button" class="btn btn-block btn-facebook auth-form-btn">
                     <i class="typcn typcn-social-facebook-circular mr-2"></i>Connect using facebook
                   </button>
-                </div>
+                </div> -->
                 <div class="text-center mt-4 font-weight-light">
                   Don't have an account? <a href="/registration/register" class="text-primary">Create</a>
                 </div>
@@ -75,7 +75,7 @@
   <script src="../../js/hoverable-collapse.js"></script>
   <script src="../../js/template.js"></script>
   <script src="../../js/settings.js"></script>
-  <script type="text/javascript" src="../js/snow.js"></script> -->
+  <script type="text/javascript" src="../js/snow.js"></script> 
   <!-- endinject -->
 </body>
 

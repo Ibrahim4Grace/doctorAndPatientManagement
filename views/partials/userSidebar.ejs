@@ -34,7 +34,7 @@
     <li class="nav-item">
       <a class="nav-link" href="#">
         <i class="typcn typcn-location menu-icon"></i>
-        <span class="menu-title"><%= user.address %></span>
+        <span class="menu-title"><%= user.city %> <%= user.state %></span>
       </a>
     </li>
     <li class="nav-item">
@@ -81,11 +81,17 @@
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="/signout">
-        <i class="typcn typcn-power-outline menu-icon"></i>
-        <span class="menu-title">Logout</span>
+      <a class="nav-link" href="/users/editMyProfile">
+        <i class="typcn typcn-user menu-icon"></i>
+        <span class="menu-title">Edit Profile</span>
       </a>
     </li>
+
+      <li class="nav-item">
+        <form class="nav-link" action="/users/logout" method="post">
+                <button type="submit" class="logouts-btns">Logout</button>
+        </form>
+      </li>
   </ul>
  
 </nav>

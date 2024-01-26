@@ -73,71 +73,104 @@
                            <p class="card-description">
                              Add New Admin
                            </p>
-                           <form class="forms-sample" action="/addAdmin" method="post" enctype="multipart/form-data">
+                           <form class="forms-sample" action="/backend/addNewAdminPost" method="post" enctype="multipart/form-data">
 
                              <div class="form-group">
                                <label for="exampleInputName1">Name</label>
-                               <input type="text" class="form-control" id="exampleInputName1" name="fullName"
-                               value="<%= typeof fullName != 'undefined' ? fullName : '' %>"/>
+                               <input type="text" class="form-control" id="exampleInputName1" name="adminFullName"
+                               value="<%= typeof adminFullName != 'undefined' ? adminFullName : '' %>"/>
                              </div>
 
                              <div class="form-group">
                                <label for="exampleInputEmail3">Username</label>
-                               <input type="text" class="form-control" id="exampleInputEmail3" name="username" 
-                               value="<%= typeof username != 'undefined' ? username : '' %>"/>
+                               <input type="text" class="form-control" id="exampleInputEmail3" name="adminUsername" 
+                               value="<%= typeof adminUsername != 'undefined' ? adminUsername : '' %>"/>
                              </div>
 
                              <div class="form-group">
                                 <label for="exampleInputEmail3">Password</label>
-                                <input type="password" class="form-control" id="exampleInputEmail3" name="password" 
-                                value="<%= typeof password != 'undefined' ? password : '' %>"/>
+                                <input type="password" class="form-control" id="exampleInputEmail3" name="adminPassword" 
+                                value="<%= typeof adminPassword != 'undefined' ? adminPassword : '' %>"/>
                               </div>
 
                               <div class="form-group">
                                 <label for="exampleInputEmail3">Confirm Password</label>
-                                <input type="password" class="form-control" id="exampleInputEmail3" name="password2" 
-                                value="<%= typeof password2 != 'undefined' ? password2 : '' %>"/>
+                                <input type="password" class="form-control" id="exampleInputEmail3" name="adminPassword2" 
+                                value="<%= typeof adminPassword2 != 'undefined' ? adminPassword2 : '' %>"/>
                               </div>
 
                               <div class="form-group">
-                                <label for="exampleInputCity1">Address</label>
+                                <label for="exampleInputCity1">Email Address</label>
+                                <input type="email" class="form-control" id="exampleInputCity1" name="adminEmail"
+                                value="<%= typeof adminEmail != 'undefined' ? adminEmail : '' %>" />
+                              </div>
+                              
+                              <div class="form-group">
+                                <label for="exampleInputCity1">Phone Number</label>
+                                <input type="number" class="form-control" id="exampleInputCity1" name="adminNumber"
+                                value="<%= typeof adminNumber != 'undefined' ? adminNumber : '' %>" />
+                              </div>
+
+                              <div class="form-group">
+                                <label for="exampleInputCity1">Home Address</label>
                                 <input type="text" class="form-control" id="exampleInputCity1" name="adminAddress"
                                 value="<%= typeof adminAddress != 'undefined' ? adminAddress : '' %>" />
                               </div>
 
                               <div class="form-group">
-                                <label for="exampleInputCity1">Phone Number</label>
-                                <input type="text" class="form-control" id="exampleInputCity1" name="adminNumber"
-                                value="<%= typeof adminNumber != 'undefined' ? adminNumber : '' %>" />
+                                <label for="exampleInputCity1">City</label>
+                                <input type="text" class="form-control" id="exampleInputCity1" name="adminCity"
+                                value="<%= typeof adminCity != 'undefined' ? adminCity : '' %>" />
+                              </div>
+
+                              <div class="form-group">
+                                <label for="exampleInputCity1">State</label>
+                                <input type="text" class="form-control" id="exampleInputCity1" name="adminState"
+                                value="<%= typeof adminState != 'undefined' ? adminState : '' %>" />
+                              </div>
+
+                              <div class="form-group">
+                                <% let role=["Admin", "Editor" ] %>
+                 
+                                <label for="exampleSelectGender">Select Role</label>
+                                <select class="form-control" id="exampleSelectGender" name="adminRole"
+                                   value="<%= typeof adminRole != 'undefined' ? adminRole : '' %>">
+                                       <option value="">Select Role</option>
+                                      <% role.forEach((so)=> { %>
+                                          <option value="<%- so %>"><%- so %></option>
+                                          <% }) %>
+                                </select>
+                              </div>
+                              
+                              <div class="form-group">
+                                <label for="exampleInputCity1">Date of Birth</label>
+                                <input type="date" class="form-control" id="exampleInputCity1" name="adminDob"
+                                value="<%= typeof adminDob != 'undefined' ? adminDob : '' %>" />
+                              </div>
+
+                              <div class="form-group">
+                                <label for="exampleInputCity1">Emergency Name</label>
+                                <input type="text" class="form-control" id="exampleInputCity1" name="adminEmergencyName"
+                                value="<%= typeof adminEmergencyName != 'undefined' ? adminEmergencyName : '' %>" />
+                              </div>
+
+                              <div class="form-group">
+                                <label for="exampleInputCity1">Emergency Number</label>
+                                <input type="number" class="form-control" id="exampleInputCity1" name="adminEmergencyNumber"
+                                value="<%= typeof adminEmergencyNumber != 'undefined' ? adminEmergencyNumber : '' %>" />
+                              </div>
+
+                              <div class="form-group">
+                                <label for="exampleInputCity1">Employment Date</label>
+                                <input type="date" class="form-control" id="exampleInputEmail" name="adminEmployDate"
+                                value="<%= typeof adminEmployDate != 'undefined' ? adminEmployDate : '' %>" />
                               </div>
 
                               <div class="form-group">
                                 <label for="exampleInputCity1">Upload Image</label>
                                 <input type="file" class="form-control" id="exampleInputCity1" name="image" />
                               </div>
-
-                              <div class="form-group">
-                                <label for="exampleInputCity1">Email</label>
-                                <input type="email" class="form-control" id="exampleInputEmail" name="email"
-                                value="<%= typeof email != 'undefined' ? email : '' %>" />
-                              </div>
-
-                             <div class="form-group">
-                               <% let role=["Admin", "Editor" ] %>
-                
-                               <label for="exampleSelectGender">Select Role</label>
-                               <select class="form-control" id="exampleSelectGender" name="role"
-                                  value="<%= typeof role != 'undefined' ? role : '' %>">
-                                 
-                                      <option value="">Select Role</option>
-                
-                                     <% role.forEach((so)=> { %>
-                                         <option value="<%- so %>"><%- so %></option>
-                
-                                         <% }) %>
-                               </select>
-                             </div>
-                             
+                            
                              <button type="submit" class="btn btn-primary mr-2">Submit</button>
                              <button class="btn btn-light">Cancel</button>
                            </form>
@@ -181,10 +214,10 @@
                                 
                                 
                                   <td>
-                                    <%= adminResult.fullName %>
+                                    <%= adminResult.adminFullName %>
                                 </td>
                                   <td>
-                                      <%= adminResult.username %>
+                                      <%= adminResult.adminUsername %>
                                   </td>
                                   <td>
                                       <%= adminResult.adminAddress %>
@@ -193,10 +226,10 @@
                                       <%= adminResult.adminNumber %>
                                   </td>
                                   <td>
-                                    <%= adminResult.email %>
+                                    <%= adminResult.adminEmail %>
                                 </td>
                                   <td>
-                                      <%= adminResult.role %>
+                                      <%= adminResult.adminRole %>
                                   </td>  
 
                                   <td data-label="Edit">
@@ -205,7 +238,7 @@
                                     </a>
                                   </td>
                                   <td data-label="Delete">
-                                    <a href="/deleteAdmin/<%- adminResult._id %>">
+                                    <a href="/backend/deleteAdminProfile/<%- adminResult._id %>">
                                       <i class="typcn typcn-trash menu-icon" style="color: black;"></i>
                                     </a>
                                   </td>
@@ -233,11 +266,7 @@
         
          </div>
       
-          <footer class="footer">
-            <div class="d-sm-flex justify-content-center justify-content-sm-between">
-              <span class="text-center text-sm-left d-block d-sm-inline-block">Copyright © korextech.com 2023</span>
-            </div>
-          </footer>
+         <%- include (`../partials/adminFooter`); -%>
      
         </div>
    
@@ -245,13 +274,7 @@
   
     </div>
 
-    <script src="../js/vendor.bundle.base.js"></script>
-  
-    <script src="../js/off-canvas.js"></script>
-
-    <script src="../js/template.js"></script>
-  
-  
+ 
  
 
  
