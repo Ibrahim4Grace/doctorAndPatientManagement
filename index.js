@@ -12,6 +12,7 @@ const MongoStore = require('connect-mongo');
 const methodOverride = require('method-override');
 const morgan = require('morgan');
 const nodmon = require('nodemon');
+const nodemailer = require('nodemailer');
 const connectToMongoDB = require('./database/conn'); 
 const doctorApiRoute = require('./route/doctorApiRoute');
 const cors = require('cors');
@@ -23,9 +24,9 @@ app.use((req, res, next) => {
   res.header('Pragma', 'no-cache');
   next();
 });
-
+DEV_ORIGIN
 const prodOrigin = [process.env.BASE_URL, process.env.BACKEND_URL]
-const devOrigin = [process.env.DEV_ORIGIN]
+const devOrigin = ['http://localhost:2100',]
 const allowedOrigins = process.env.NODE_ENV === 'production' ? prodOrigin : devOrigin
 app.use(cors({
   origin:(origin, callback) =>{
