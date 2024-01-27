@@ -24,7 +24,7 @@ app.use((req, res, next) => {
   res.header('Pragma', 'no-cache');
   next();
 });
-DEV_ORIGIN
+
 const prodOrigin = [process.env.BASE_URL, process.env.BACKEND_URL]
 const devOrigin = ['http://localhost:2100',]
 const allowedOrigins = process.env.NODE_ENV === 'production' ? prodOrigin : devOrigin
