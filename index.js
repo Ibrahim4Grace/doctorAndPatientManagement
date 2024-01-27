@@ -11,6 +11,7 @@ const session = require(`express-session`)
 const MongoStore = require('connect-mongo');
 const methodOverride = require('method-override');
 const morgan = require('morgan');
+const nodmon = require('nodemon');
 const connectToMongoDB = require('./database/conn'); 
 const doctorApiRoute = require('./route/doctorApiRoute');
 const cors = require('cors');
