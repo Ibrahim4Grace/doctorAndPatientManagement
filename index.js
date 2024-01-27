@@ -24,7 +24,7 @@ app.use((req, res, next) => {
 });
 
 const prodOrigin = [process.env.BASE_URL, process.env.BACKEND_URL]
-const devOrigin = ['http://localhost:2100',]
+const devOrigin = [process.env.DEV_ORIGIN]
 const allowedOrigins = process.env.NODE_ENV === 'production' ? prodOrigin : devOrigin
 app.use(cors({
   origin:(origin, callback) =>{
