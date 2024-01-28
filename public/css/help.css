@@ -260,13 +260,13 @@
 }
 
 
-.helpcontent1topic3 {
+.helpcontent1topic3  p{
     font-weight: 400;
     font-family: "Noto Sans", sans-serif;
     font-size: 20px;
     line-height: 28px;
     color: #1c1c1c;
-
+    text-decoration: none;
 }
 
 
@@ -284,10 +284,10 @@
 .helpcontent1topic5 {
     font-weight: 500;
     font-family: "Noto Sans", sans-serif;
-    font-size: 16px;
+    font-size: 14px;
     line-height: 24px;
     color: #1c1c1c;
-    margin-left: 10px;
+
 
 }
 

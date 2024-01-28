@@ -329,15 +329,14 @@
     font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
     Font-Size: 20px;
     margin-top: 3px;
-    color: #0074d9;
-
+    color: 004861;
 }
 
-@media (min-width: 320px) and (max-width: 480px) {
+@media (min-width: 320px) and (max-width: 767px) {
     .appoint-content4-righttopic4 {
-
-        Font-Size: 17px;
-        margin-top: 0px;
+        Font-Size: 15px;
+        margin-top: -20px;
+        text-decoration: none;
 
     }
 }

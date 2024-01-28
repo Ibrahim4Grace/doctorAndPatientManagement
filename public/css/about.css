@@ -24,21 +24,21 @@
 @media (min-width: 320px) and (max-width: 480px) {
     .main-about {
         width: 100%;
-        min-height: 1120px;
+        min-height: 1045px;
     }
 }
 
 @media (min-width: 481px) and (max-width: 767px) {
     .main-about {
         width: 100%;
-        min-height: 943px;
+        min-height: 893px;
     }
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
     .main-about {
         width: 100%;
-        min-height: 1000px;
+        min-height: 953px;
     }
 }
 
