@@ -2171,11 +2171,19 @@ HR {
 
 
 .tencontentimage1 {
-    /* background-image: url(sign.png); */
     width: 64px;
     height: 64px;
     margin-left: 47%;
     margin-top: 100px;
+}
+
+@media (min-width: 320px) and (max-width: 1024px) {
+    .tencontentimage1 {
+        width: 64px;
+        height: 64px;
+        margin-left: 43%;
+        margin-top: 100px;
+    }
 }
 
 .tencontenttopic {
