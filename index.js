@@ -25,32 +25,17 @@ app.use((req, res, next) => {
   next();
 });
 
-const prodOrigin = [process.env.BASE_URL, process.env.BACKEND_URL];
-const devOrigin = ['http://localhost:2100'];
-const allowedOrigins = process.env.NODE_ENV === 'production' ? prodOrigin : devOrigin;
 
+
+const trustedOrigins = [process.env.BASE_URL];
 app.use(cors({
-  origin: process.env.NODE_ENV === 'production' ? '*' : allowedOrigins,
+  origin: process.env.NODE_ENV === 'production' ? trustedOrigins : '*',
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  exposedHeaders: ['Content-Length', 'X-Foo', 'X-Bar'],
 }));
 
-
-// const prodOrigin = [process.env.BASE_URL, process.env.BACKEND_URL]
-// const devOrigin = ['http://localhost:2100',]
-// const allowedOrigins = process.env.NODE_ENV === 'production' ? prodOrigin : devOrigin
-// app.use(cors({
-//   origin:(origin, callback) =>{
-//     if(allowedOrigins.includes(origin)) {
-//       console.log(origin, allowedOrigins)
-//       callback(null, true);
-//     }else {
-//       callback(new Error('Not allowed by CORS'));
-//     }
-//   },
-//   credentials: true,
-//   methods: ['GET', 'POST', 'PUT', 'DELETE'],
-// }))
 
 // Connect to MongoDB using this method because it returns a promise
 connectToMongoDB()
