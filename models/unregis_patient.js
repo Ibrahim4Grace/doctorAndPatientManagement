@@ -9,6 +9,10 @@ const UnregisterSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    username:{
+        type: String,
+        required: true
+    },
     number: {
         type: String,
         required: true
@@ -16,6 +20,12 @@ const UnregisterSchema = new mongoose.Schema({
     address: {
         type: String,
         required: true
+    },
+    city: {
+        type: String,
+    },
+    state: {
+        type: String,
     },
     password: {
 
