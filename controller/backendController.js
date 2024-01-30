@@ -6,12 +6,10 @@ const fs = require('fs');
 const path = require('path');
 const multer = require('multer');
 const passport = require('passport');
-
 const User = require('../models/User');
 const Admin = require('../models/admin');
 const { Doctors, DoctorPayment } = require('../models/doctors');
 const { Appointment, Contact } = require('../models/appointment');
-const notRegistered = require('../models/unregis_patient');
 const MedicalRecord = require('../models/addmedicalrecord');
 const    { HospitalExpenses, PatientPayment }  = require('../models/patientPayment');
 
@@ -973,12 +971,12 @@ const addPatientPost = async (req, res) => {
         } else {
     
             try {
-                // Check if the email is already registered in the notRegister table
-                const notRegisteredUserExists = await notRegistered.findOne({  $or: [{ email }, { username }] });
-
-                if (notRegisteredUserExists) {
-                    errors.push({ msg: 'Email or Username already registered' });
+                // Check if the email nd username is already registered in the User table
+                const registeredUserExists = await User.findOne({ $or: [{ email }, { username }]  });
     
+                if (registeredUserExists) {
+                    errors.push({ msg: 'Email or username already registered' });
+
                     // Render the registration page with errors
                     res.render('backend/addPatient', {
                         errors,
@@ -998,31 +996,6 @@ const addPatientPost = async (req, res) => {
                         admin,
                     });
                 } else {
-                    // Check if the email nd username is already registered in the User table
-                    const registeredUserExists = await User.findOne({ $or: [{ email }, { username }]  });
-    
-                    if (registeredUserExists) {
-                        errors.push({ msg: 'Email or username already registered' });
-    
-                        // Render the registration page with errors
-                        res.render('backend/addPatient', {
-                            errors,
-                            name,
-                            username,
-                            email,
-                            gender,
-                            dob,
-                            number,
-                            address,
-                            city,
-                            state,
-                            password,
-                            password2,
-                            occupation,
-                            bloodGroup,
-                            admin,
-                        });
-                    } else {
                         // Hash the password
                         const hashedPassword = await bcrypt.hash(password, 10);
     
@@ -1117,7 +1090,7 @@ const addPatientPost = async (req, res) => {
                         req.flash('success_msg', 'Patient successfully registered.');
                         res.redirect('/backend/allpatients');
                     }
-                }
+               
             } catch (error) {
                 // Handle any unexpected errors
                 console.error('Registration error:', error);
@@ -1381,99 +1354,6 @@ const deleteRegisteredPatient = (req, res) => {
         res.send(`Error`)
         res.redirect(`/backend/dashboard`)
     }) 
-};
-
-// UNREGISTERED PATIENTS
-const unregisteredPatients = async (req, res) => {
-    const page = parseInt(req.query.page) || 1;
-    const perPage = 8; // Number of items per page
-    const totalPosts = await notRegistered.countDocuments();
-    const totalPages = Math.ceil(totalPosts / perPage);
-    const admin = req.user;
-
-    const unregisteredPatient = await notRegistered.find()
-        .sort({ date_added: -1 }) // Sort by date_added in descending order
-        .skip((page - 1) * perPage)
-        .limit(perPage);
-    res.render('backend/unregis_patient', { admin, unregisteredPatient, totalPages, currentPage: page });
-};
-
-const searchUnregisterPatient = async (req, res )=> {
-    try {
-        // Use req.body to get the name from the form input
-        const unregisterName = req.body.name; 
-        // Use a regular expression to perform a case-insensitive search for the patient's name
-        const query = {
-            name: { $regex: new RegExp(unregisterName, 'i') } // 'i' for case-insensitive
-        };
-        const admin= req.user;
-        const outputUnregisterList = await notRegistered.find(query);
-        res.render('backend/searchUnregisterPatient', { outputUnregisterList,admin });
-    } catch (err) {
-        console.error(err);
-        res.redirect('/backend/unregis_patient');
-    }
-};
-
-//MOVE PATIENT FROM UNREGISTER TO REGISTER TABLE
-const registerPatient = async (req, res) => {
-    try {
-        const patientToRegister = await notRegistered.findById(req.params.id);
-        if (!patientToRegister) {
-            return res.status(404).send('Patient not found');
-        }
-        // Generate a new unique patient ID (ensure it's unique)
-        let newPatientID;
-        let isUnique = false;
-        while (!isUnique) {
-            newPatientID = generatePatientID();
-            // Check if the generated patient ID already exists in registered patients
-            const patientIDExists = await User.findOne({ patientID: newPatientID });
-            if (!patientIDExists) {
-                isUnique = true;
-            }
-        }
-        // Create a new record in the "allpatients" collection with patientToRegister's data
-        const newPatient = new User({
-            name: patientToRegister.name,
-            username: patientToRegister.username,
-            email: patientToRegister.email,
-            number: patientToRegister.number,
-            password: patientToRegister.password,
-            dob: patientToRegister.dob,
-            gender: patientToRegister.gender,
-            address: patientToRegister.address,
-            city: patientToRegister.city,
-            state: patientToRegister.state,
-            patientID: newPatientID // Assign the generated patient ID
-        });
-        // Save the new patient record
-        await newPatient.save();
-        // Attempt to remove the patient from the "notRegistered" collection
-        try {
-            // First, remove the patient from the "notRegistered" collection using findByIdAndRemove
-            const removedPatient = await notRegistered.findByIdAndRemove(req.params.id);
-            console.log(`Removed patient: ${removedPatient}`);
-        } catch (removeError) {
-            console.error('Error removing patient:', removeError);
-        }
-        res.redirect('/backend/allpatients'); // Redirect to the "allpatients" page after registration
-    } catch (error) {
-        console.error(error);
-        res.status(500).send('Server error');
-    }
-};
-
-const deleteUnregisteredPatient = (req, res) => {
-    const mid = req.params.m_id;
-    notRegistered.findByIdAndDelete(mid)
-    .then(() => {
-        req.flash(`success_msg`, 'Data deleted successfully');
-        res.redirect(`/backend/unregis_patient`)
-    })
-    .catch(() => {
-        res.send(`Data deleted successfully`)
-    })
 };
 
 //PAYMENT SECTION
@@ -1990,7 +1870,7 @@ const adminLogout = (req, res) => {
 };
 
 module.exports = ({
-    adminloginPage, adminloginPagePost, adminDashboard, adminSection, uploads, addNewAdminPost, editAdmininformation, editAdmininformationPost, deleteAdminProfile, appointmentSection, searchAppointment, viewAppointment, editAppointment, editAppointmentPost,deleteAppointment,addDoctor,upload, addDoctorPost,allDoctor, searchDoctor, doctorProfile, editDoctor, editDoctorProfilePost, deleteDoctorProfile, addPatient,upl, addPatientPost,registeredPatients,searchPatient, viewAllPatients,editPatient,editPatientPost,addMedicalRecord,addMedicalRecordPost, deleteRegisteredPatient, unregisteredPatients,searchUnregisterPatient, registerPatient, deleteUnregisteredPatient,patientPayment,patientPaymentPost, searchPatientPay,deletePatientPayment,doctorPayment, doctorPaymentPost,searchDoctorPayment,editDoctorPayment,editDoctorPaymentPost,deleteDoctorPay,hospitalExpenses,upld,hospitalExpensesPost,searchHospitalExpenses,editHospiExpenses,editHospiExpensePost,deletehospital,adminLogout
+    adminloginPage, adminloginPagePost, adminDashboard, adminSection, uploads, addNewAdminPost, editAdmininformation, editAdmininformationPost, deleteAdminProfile, appointmentSection, searchAppointment, viewAppointment, editAppointment, editAppointmentPost,deleteAppointment,addDoctor,upload, addDoctorPost,allDoctor, searchDoctor, doctorProfile, editDoctor, editDoctorProfilePost, deleteDoctorProfile, addPatient,upl, addPatientPost,registeredPatients,searchPatient, viewAllPatients,editPatient,editPatientPost,addMedicalRecord,addMedicalRecordPost, deleteRegisteredPatient,patientPayment,patientPaymentPost, searchPatientPay,deletePatientPayment,doctorPayment, doctorPaymentPost,searchDoctorPayment,editDoctorPayment,editDoctorPaymentPost,deleteDoctorPay,hospitalExpenses,upld,hospitalExpensesPost,searchHospitalExpenses,editHospiExpenses,editHospiExpensePost,deletehospital,adminLogout
 });
 
 

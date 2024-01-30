@@ -10,24 +10,28 @@ const UserSchema = new mongoose.Schema({
         required: true
     },
     gender: {
-        type: String
-
+        type: String,
+        required: true
     },
     dob: {
-        type: String
+        type: String,
+        required: true
     },
     number: {
         type: String,
         required: true
     },
     address: {
-        type: String
+        type: String,
+        required: true
     },
     city: {
-        type: String
+        type: String,
+        required: true
     },
     state: {
-        type: String
+        type: String,
+        required: true
     },
     username: {
         type: String,
@@ -38,10 +42,10 @@ const UserSchema = new mongoose.Schema({
         required: true
     },
     occupation: {
-        type: String
+        type: String,
+        required: true
     },
     diagnosis: {
-
         type: String
     },
     treatment: {
@@ -55,7 +59,6 @@ const UserSchema = new mongoose.Schema({
         contentType: String
     },
     bloodGroup: {
-
         type: String
     },
     failedLoginAttempts: {   

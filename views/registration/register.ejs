@@ -7,92 +7,143 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Registration Page</title>
   <!-- base:css -->
-  <link rel="stylesheet" href="../vertical-layout-light/style.css">
+  <!-- <link rel="stylesheet" href="../vertical-layout-light/style.css"> -->
   <link rel="stylesheet" href="../css/account.css">
+  <link rel="stylesheet" href="../css/signupform.css">
   <link rel="icon" href="../img/Createe.jpg">
-
 </head>
 
 <body>
     <%- include(`../partials/links`); -%>
-  <div class="container-scroller">
-    <div class="container-fluid page-body-wrapper full-page-wrapper">
-      <div class="content-wrapper d-flex align-items-center auth px-0">
-        <div class="row w-100 mx-0">
-          <div class="col-lg-4 mx-auto">
-            <div class="auth-form-light text-left py-5 px-4 px-sm-5">
-                <%- include (`../partials/messages`); -%>
-              <div class="brand-logo">
-                <img src="../img/korexlogo.jpg" alt="logo">
-              </div>
-              <h4>New here?</h4>
-              <h6 class="font-weight-light">Signing up is easy. It only takes a few steps</h6>
-              <form class="pt-3" action="/registration/registrationPagePost" method="post">
-                <div class="form-group">
-                  <input type="text" class="form-control form-control-lg" id="exampleInputUsername1" name="name" 
-                  placeholder="Full name" value="<%= typeof name != 'undefined' ? name : '' %>">
-                </div>
-                <div class="form-group">
-                    <input type="email" class="form-control form-control-lg" id="exampleInputUsername1" 
-                    name="email" placeholder="email" value="<%= typeof email != 'undefined' ? email : '' %>">
-                </div>
-                <div class="form-group">
-                  <input type="text" class="form-control form-control-lg" id="exampleInputUsername1" 
-                  name="username" placeholder="username" value="<%= typeof username != 'undefined' ? username : '' %>">
-              </div>
-                <div class="form-group">
-                  <input type="text" class="form-control form-control-lg" id="exampleInputEmail1" 
-                  name="number" placeholder="Number" value="<%= typeof number != 'undefined' ? number : '' %>">
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control form-control-lg" id="exampleInputEmail1" 
-                    name="address" placeholder="Home Address" value="<%= typeof address != 'undefined' ? address : '' %>">
-                </div>
 
-                <div class="form-group">
-                  <input type="text" class="form-control form-control-lg" id="exampleInputEmail1" 
-                  name="city" placeholder=" City" value="<%= typeof city != 'undefined' ? city : '' %>">
-                </div>
-              
-
-              <div class="form-group">
-                <input type="text" class="form-control form-control-lg" id="exampleInputEmail1" 
-                name="state" placeholder="State" value="<%= typeof state != 'undefined' ? state : '' %>">
-              </div>
-            
-                
-                <div class="form-group">
-                  <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" 
-                  name="password" placeholder="Password" value="<%= typeof password != 'undefined' ? password : '' %>">
-                </div>
-                <div class="form-group">
-                    <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" 
-                    name="password2" placeholder="Password2" value="<%= typeof password2 != 'undefined' ? password2 : '' %>">
-                  </div>
-                <div class="mb-4">
-                  <div class="form-check">
-                    <label class="form-check-label text-muted">
-                      <input type="checkbox" class="form-check-input">
-                      I agree to all Terms & Conditions
-                    </label>
-                  </div>
-                </div>
-                <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">
-                    SIGN UP
-                 </button>
-                <div class="text-center mt-4 font-weight-light">
-                  Already have an account? <a href="/registration/login" class="text-primary">Login</a>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
+    <div class="container">
+    <form class="form"  action="/registration/registrationPagePost" method="post" enctype="multipart/form-data">
+      <!-- Progress Bar -->
+     
+      <div class="progress-bar">
+          <div class="progress" id="progress"></div>
+          <div class="progress-step active" data-title="Personal"></div>
+          <div class="progress-step" data-title="Contact "></div>
+          <div class="progress-step" data-title="Access"></div>
+          <div class="progress-step" data-title="Submit"></div>
       </div>
 
-    </div>
-
-  </div>
-
+      <!-- Steps -->
+      <div class="form-step active">
+        <h3>Personal Informations</h3>
+        <div class="input-group">
+            <label for="full-name">Full Name</label>
+            <input type="text" name="name" 
+            value="<%= typeof name != 'undefined' ? name : '' %>" required/>
+        </div>
+        <div class="input-group">
+          <label for="email">Email</label>
+          <input type="email" name="email" required>
+        </div>
+        <div class="input-group">
+          <% let gender=["Male", "Female" ] %>
+          <label for="gender">Select Gender</label>
+          <select  name="gender" required/>
+                 <option value="">Select Gender</option>
+                <% gender.forEach((so)=> { %>
+                    <option value="<%- so %>"><%- so %></option>
+                    <% }) %>
+          </select>
+        </div>
+        <div class="input-group">
+            <label for="birth-date">Birth Date</label>
+            <input type="date" name="dob" required>
+        </div>
+        <div class="input-group">
+          <label for="phone">Phone Number</label>
+          <input type="text" name="number" required>
+      </div>
+          <div class="">
+              <a class="btn btn-next">Next</a>
+          </div>
+      </div>
+      <div class="form-step ">
+        <h3>Contact Informations</h3>
+        <div class="input-group">
+          <label for="address">Address</label>
+          <input type="text" name="address" required>
+        </div>
+        <div class="input-group">
+          <label for="city">City</label>
+          <input type="text" name="city" required >
+        </div>
+        <div class="input-group">
+          <label for="state">State</label>
+          <input type="text" name="state" required>
+        </div>
+     
+        <div class="input-group">
+          <label for="occupation">Occupation</label>
+          <input type="text" name="occupation" required>
+        </div>
+        <div class="input-group">
+          <label for="bloodGroup">Blood Group</label>
+          <input type="text" name="bloodGroup" >
+        </div>
+          <div class="btn-group">
+              <a class="btn btn-prev">Previous</a>
+              <a class="btn btn-next">Next</a>
+          </div>
+      </div>
+      <div class="form-step ">
+        <h3>Access Informations</h3>
+          <div class="experiences-group">
+              <div class="experience-item">
+                
+        
+                <div class="input-group">
+                  <label for="summary">Username</label>
+                  <input type="text" name="username" required>
+                </div>
+                <div class="input-group">
+                  <label for="password">Password</label>
+                  <input type="password" name="password" required>
+                </div>
+                <div class="input-group">
+                  <label for="password">Confirm Password</label>
+                  <input type="password" name="password2" >
+                </div>
+                <div class="input-group">
+                    <label for="image">Upload Image</label>
+                    <input type="file" name="image" required>
+                </div>
+              </div>
+          </div>
+          <div class="add-experience">
+            <a class="add-exp-btn"></a>
+          </div>
+          <div class="btn-group">
+              <a class="btn btn-prev">Previous</a>
+              <a class="btn btn-next">Next</a>
+          </div>
+      </div>
+      <div class="form-step ">
+          <h3>Congratulations!</h3>
+          <div class="row justify-content-center">
+            <div class="col-3 fit-image-container"> 
+                <img src="https://i.imgur.com/GwStPmg.png" class="fit-image">
+            </div>
+          </div><br>
+          <div class="row justify-content-center">
+            <div class="col-7 text-center">
+                   <h5 class="purple-text text-center">  
+                    Click the "Submit" button below to submit your form.
+                  </h5>
+           </div>
+       </div>
+          <div class="btn-group">
+              <a class="btn btn-prev">Previous</a>
+              <button type="submit" class="btn btn-complete view-btn">Submit</button>
+          </div>
+      </div>
+  </form>
+</div>
+<script src="../js/signupForm.js"></script>
 </body>
 
 </html>

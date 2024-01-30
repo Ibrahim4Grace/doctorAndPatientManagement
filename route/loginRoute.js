@@ -3,12 +3,12 @@ const router = express.Router();
 const {checkAuthenticated, checkNotAuthenticated} = require ('../middleware/authentication');
 
 const {
-  registrationPage,registrationPagePost, userLoginPage,userLoginPagePost,forgetPassword,forgetPasswordPost,resetPasswordToken,resetPasswordPost
+  registrationPage,upl,registrationPagePost, userLoginPage,userLoginPagePost,forgetPassword,forgetPasswordPost,resetPasswordToken,resetPasswordPost
 
 } = require('../controller/loginController');
 
 router.get('/register', checkNotAuthenticated, registrationPage);
-router.post('/registrationPagePost', checkNotAuthenticated, registrationPagePost);
+router.post('/registrationPagePost', checkNotAuthenticated, upl.single('image'), registrationPagePost);
 router.get('/login', checkNotAuthenticated, userLoginPage);
 router.post('/userLoginPagePost', checkNotAuthenticated, userLoginPagePost);
 router.get('/forgetPassword', checkNotAuthenticated, forgetPassword);

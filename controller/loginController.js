@@ -4,8 +4,10 @@ const nodemailer = require(`nodemailer`);
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const  User  = require('../models/User');
-const  notRegistered  = require('../models/unregis_patient');
-const Admin = require('../models/admin');
+const fs = require('fs');
+const path = require('path');
+const multer = require('multer');
+
 
  //Login attempts Limit 
  const MAX_FAILED_ATTEMPTS = process.env.MAX_FAILED_ATTEMPTS;
@@ -25,177 +27,181 @@ const registrationPage = (req, res) => {
     res.render(`registration/register`);  
 };
 
+// Function to generate a unique patient ID
+function generatePatientID() {
+    // Your logic to generate a unique patient ID here
+    const prefix = 'PT';
+    const uniqueNumber = generateUniqueNumber();
+    const newPatientID = `${prefix}${uniqueNumber}`;
+    return newPatientID;
+}
+
+// Function to generate a unique number
+function generateUniqueNumber() {
+    // Your logic to generate a unique number here
+    return Math.floor(1000 + Math.random() * 9000);
+}
+
+//IF WE WANT OUR IMAGES TO GO INOT DIFFERENT FOLDER
+let storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, './public/patientImage/')
+    },
+    filename: (req, file, cb) => {
+        cb(null, file.fieldname + '_' + Date.now())
+    }
+});
+
+const upl = multer({ storage: storage });
+
 const registrationPagePost = async (req, res) => {
-    const { name, email, username, number, address, city, state, password, password2 } = req.body;
+  
+    const { name, username, email, gender, dob, number, address, city, state, password, password2, occupation, bloodGroup } = req.body;
     let errors = [];
 
-    // Check required fields
-    if (!name || !email || !username || !number || !address || !city || !state  || !password || !password2) {
+    //check required fields
+    if (!name || !username || !email || !gender || !dob || !number || !address || !city || !state || !password || !password2 || !occupation || !bloodGroup) {
         errors.push({ msg: 'Please fill in all fields' });
     }
 
-    // Check passwords match
+    //check passwords match
     if (password !== password2) {
-        errors.push({ msg: 'Passwords do not match' });
+        errors.push({ msg: 'Password do not match' });
     }
 
-    // Check password length
+    // Generate a new unique patient ID
+    let newPatientID;
+    let isUnique = false;
+    while (!isUnique) {
+        newPatientID = generatePatientID();
+        // Check if the generated patient ID already exists
+        const patientIDExists = await User.findOne({ patientID: newPatientID });
+        if (!patientIDExists) {
+            isUnique = true;
+        }
+    }
+
+    //Check password length
     if (password.length < 6) {
         errors.push({ msg: 'Password should be at least 6 characters' });
     }
 
-    // If all checks complete
-    if (errors.length > 0) {
-        res.render('registration/register', {
-            errors,
-            name,
-            email,
-            username,
-            number,
-            address,
-            city,
-            state,
-            password,
-            password2
-        });
-    } else {
-        try {
-            // Check if the email or username is already registered in the notRegistered table
-            const notRegisteredUserExists = await notRegistered.findOne({ $or: [{ email }, { username }] });
-
-            if (notRegisteredUserExists) {
-                errors.push({ msg: 'Email or username already registered' });
-
-                // Render the registration page with errors
-                return res.render('registration/register', {
-                    errors,
-                    name,
-                    email,
-                    username,
-                    number,
-                    address,
-                    city,
-                    state,
-                    password,
-                    password2,
-                });
-            }
-
-            // Check if the email or username is already registered in the admin table
-            const adminUserExists = await Admin.findOne({ $or: [{ adminEmail: email }, { adminUsername: username }] });
-
-            if (adminUserExists) {
-                errors.push({ msg: 'Email or username already registered' });
-
-                // Render the registration page with errors
-                return res.render('registration/register', {
-                    errors,
-                    name,
-                    email,
-                    username,
-                    number,
-                    address,
-                    city,
-                    state,
-                    password,
-                    password2,
-                });
-            }
-
-            // Check if the email or username is already registered in the User table
-            const registeredUserExists = await User.findOne({ $or: [{ email }, { username }] });
-
-            if (registeredUserExists) {
-                errors.push({ msg: 'Email or username already registered' });
-
-                // Render the registration page with errors
-                return res.render('registration/register', {
-                    errors,
-                    name,
-                    email,
-                    username,
-                    number,
-                    address,
-                    city,
-                    state,
-                    password,
-                    password2,
-                });
-            }
-            const hashedPassword = await bcrypt.hash(password, 10);
-            // Create a new user in the notRegister table
-            const newUser = new notRegistered({
-                name,
-                email,
-                username,
-                number,
-                address,
-                city,
-                state,
-                password: hashedPassword,
+        //if all check complet
+        if (errors.length > 0) {
+            res.render('registration/register', {
+                errors, name,  username,
+                email, gender, dob,
+                number,  address,city,
+                state, password, password2,
+                occupation, bloodGroup,
             });
+    
+        } else {
+    
+            try {
+               // Check if the email nd username is already registered in the User table
+               const registeredUserExists = await User.findOne({ $or: [{ email }, { username }]  });
+    
+               if (registeredUserExists) {
+                   errors.push({ msg: 'Email or username already registered' });
 
-            // Save the user to the notRegister table
-            await newUser.save();
+                   // Render the registration page with errors
+                   res.render('registration/register', {
+                       errors,name,username,
+                       email, gender, dob,
+                       number,address, city,
+                       state,password, password2,
+                       occupation, bloodGroup,
+                   });
+                } else {
+                        // Hash the password
+                        const hashedPassword = await bcrypt.hash(password, 10);
+                        // Generate a new patient ID
+                        const newPatientID = generatePatientID(); // Use generatePatientID here
+    
+                        const newUser = new User({
+                            name,
+                            username,
+                            email,
+                            gender,
+                            dob,
+                            number,
+                            address,
+                            city,
+                            state,
+                            password: hashedPassword,
+                            occupation,
+                            bloodGroup,
+                            patientID: newPatientID, // Assign the generated patient ID
+                            image: {
+                                data: fs.readFileSync(path.join(__dirname, '../public/patientImage/' + req.file.filename)),
+                                contentType: 'image/png'
+                            },
+                        });
+                        await newUser.save();
 
-            let phoneNumber = process.env.HOSPITAL_Number;
-                  let emailAddress = process.env.HOSPITAL_EMAIL;
-          
-                  let msg = `
-                  <p><img src="cid:Creat" alt="Company Logo" style="width: 100%; max-width: 500px; height: auto;"/></p><br>
-                  <p>Dear ${name}, We are writing to confirm your pending registration with Korex Hospital. We are thrilled to have you as a part of our healthcare family. Your well-being is our top priority. Please review the following details of your registration.</p>
-                 
-                        <p>Registration Information:</p>
-                  <ul>
-                      <li>Full Name: ${name}</li>
-                       <li>Email: ${email}</li>
-                       <li>Username: ${username}</li>
-                      <li>Home Address: ${address}</li>
-                      <li>City: ${city}</li>
-                      <li>State: ${state}</li>
-                      <li>Phone Number: ${number}</li>
-                  </ul>
-              
-                  <p>kindly contact us to complete your registration. If you did not register with Korex Hospital or have any concerns about this registration confirmation, please do not hesitate to contact us immediately. Your security and privacy are essential to us, and we want to ensure that your information is accurate. Futhermore, Kindly contact us to activate your registration for you to be able to access your online portal.</p>
-                  
-                  <p>Our team is here to assist you and answer any questions you may have. Feel free to reach out to our customer service department at <a href="tel:${phoneNumber}">${phoneNumber}</a> or <a href="mailto:${emailAddress}">${emailAddress}</a>. Your satisfaction is important to us, and we are here to assist you</p>
-                 
-                  <p>Once again, thank you for choosing Korex Hospital. We are committed to providing you with the highest quality healthcare services and support.</p>
-              
-              
-                  <p>Best regards,<br>
-                  The Korex Hospital Team</p>`;
+                        let phoneNumber = process.env.HOSPITAL_Number;
+                        let emailAddress = process.env.HOSPITAL_EMAIL;
 
-              const mailOptions = {
-                  from: process.env.NODEMAILER_EMAIL,
-                  to: email,
-                  subject: 'Confirmation of Your Registration with Korex Hospital',
-                  html: msg,
-                  attachments: [
-                      {
-                          filename: 'Creat.jpg',
-                          path: './public/assets/img/Creat.jpg',
-                          cid: 'Creat'
-                      }
-                  ]
-              };
-
-              transporter.sendMail(mailOptions, (error, info) => {
-                  if (error) {
-                      console.log('Email sending error:', error);
-                  } else {
-                      console.log('Email sent:', info.response);
-                  }
-              });
-
-            req.flash('success_msg', 'You are now registered. Please log in.');
-            res.redirect('/registration/login');
-        } catch (error) {
-            console.error('Registration error:', error);
-            req.flash('error_msg', 'There was a problem with registration.');
-            res.redirect('/registration/register');
+                        let msg = `
+                        <p><img src="cid:Creat" alt="Company Logo" style="width: 100%; max-width: 600px; height: auto;"/></p><br>
+                        <p>Dear ${name},  We are delighted to welcome you to Korex Hospital! Thank you for choosing us as your healthcare provider. We are committed to providing you with the highest quality medical care and ensuring your well-being.</p>
+    
+                        <p>Your registration with us is now complete, and your patient account is active. Here are some important details.</p>
+                        <p>Here are some important details to get you started:</p>
+                        <ul>
+                            <li>Full Name: ${name}</li>
+                            <li>Username: ${username}</li>
+                            <li>Date of Birth: ${dob}</li>
+                            <li>Phone Number: ${number}</li>
+                            <li>Home Address: ${address}</li>
+                            <li>City: ${city}</li>
+                            <li>State: ${state}</li>
+                            <li>Occupation: ${occupation}</li>
+                            <li>Blood Group: ${bloodGroup}</li>
+                            <li>Email Address: ${email}</li>
+                        </ul>
+        
+                        <p>Medical Appointments: You can now schedule medical appointments with our healthcare professionals. Our team is dedicated to providing you with personalized care and addressing your healthcare needs.</p>
+    
+                        <p>If you have any questions or require any assistance as you settle in, please feel free to reach out to our HR department at <a href="tel:${phoneNumber}">${phoneNumber}</a> or <a href="mailto:${emailAddress}">${emailAddress}</a>.</p>
+    
+                        <p>Once again, welcome to Korex Hospital. We look forward to serving your healthcare needs and ensuring your health and well-being. We are here for you every step of the way.</p>
+    
+                        <p>Best regards,<br>
+                        The Korex Hospital Team</p>`;
+    
+                        const mailOptions = {
+                            from: process.env.NODEMAILER_EMAIL,
+                            to: email,
+                            subject: 'Welcome to Korex Hospital Account Confirmation',
+                            html: msg,
+                            attachments: [
+                                {
+                                    filename: 'Creat.jpg',
+                                    path: './public/assets/img/Creat.jpg',
+                                    cid: 'Creat'
+                                }
+                            ]
+                        };
+    
+                        transporter.sendMail(mailOptions, (error, info) => {
+                            if (error) {
+                                console.log('Email sending error:', error);
+                            } else {
+                                console.log('Email sent:', info.response);
+                            }
+                        });
+                        req.flash('success_msg', 'Patient successfully registered.');
+                        res.redirect('/registration/login');
+                }
+            } catch (error) {
+                // Handle any unexpected errors
+                console.error('Registration error:', error);
+                req.flash('error_msg', 'There was a problem with registration.');
+                res.redirect('/registration/register');
+            }
         }
-    }
 };
 
 //USER LOGIN SECTION
@@ -512,7 +518,7 @@ const resetPasswordPost = async (req, res) => {
 };
 
 module.exports = ({
-    registrationPage,registrationPagePost, userLoginPage,userLoginPagePost,forgetPassword,forgetPasswordPost,resetPasswordToken,resetPasswordPost
+    registrationPage,upl,registrationPagePost, userLoginPage,userLoginPagePost,forgetPassword,forgetPasswordPost,resetPasswordToken,resetPasswordPost
 
 });
 

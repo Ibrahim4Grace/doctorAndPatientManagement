@@ -1,0 +1,246 @@
+
+*,
+*::before,
+*::after {
+   box-sizing: border-box;
+}
+
+:root {
+--blue-color: rgb(51, 85, 170);
+}
+
+.container {
+display: grid;
+place-items: center;
+min-height: 100vh;
+}
+/* Global stylings */
+
+label {
+   display: block;
+   margin-bottom: 0.5rem;
+}
+
+input, select {
+   display: block;
+   width: 100%;
+   padding: 0.75rem;
+   border: 1px solid #ccc;
+   border-radius: 0.25rem;
+}
+
+.ml-auto {
+   margin-left: auto;
+}
+
+
+/* Form */
+
+.form {
+   background-color: white;
+   width: clamp(320px, 30%, 430px);
+   margin: 0 auto;
+   border: 1px solid #ccc;
+   border-radius: 0.35rem;
+   padding: 1.5rem;
+   z-index: 1;
+}
+
+.input-group {
+   margin: 0.5rem 0;
+}
+
+.form-step {
+   display: none;
+}
+
+.form-step.active {
+   display: block;
+   transform-origin: top;
+   animation: animate .5s;
+}
+
+
+/* Button */
+.btn-group {
+   display: flex;
+   justify-content: space-between;
+}
+
+.btn {
+   padding: 0.75rem;
+   display: block;
+   text-decoration: none;
+   width: min-content;
+   border-radius: 5px;
+   text-align: center;
+   transition: all 0.3s;
+   cursor: pointer;
+}
+
+.btn-next {
+   background-color: var(--blue-color);
+   color: white;
+   float: right;
+}
+
+.btn-prev {
+   background-color: #777;
+   color: #fff;
+}
+
+.btn:hover {
+   box-shadow: 0 0 0 2px #fff, 0 0 0 3px var(--blue-color);
+}
+
+
+/* Prefixes */
+
+.input-box , select{
+   display: flex;
+   align-items: center;
+   background: #fff;
+   border: 1px solid #a0a0a0;
+   border-radius: 4px;
+   padding-left: 0.5rem;
+   overflow: hidden;
+   font-family: sans-serif;
+}
+
+.input-box .prefix {
+   font-weight: 300;
+   font-size: 14px;
+   color: rgb(117, 114, 114);
+}
+
+.input-box input {
+   border: none;
+   outline: none;
+}
+
+.input-box:focus-within {
+   border-color: #777;
+}
+
+/* End Prefixes */
+
+
+/* Progress bar */
+
+
+.progress-bar {
+   position: relative;
+   display: flex;
+   justify-content: space-between;
+   counter-reset: step;
+   margin-bottom: 30px;
+}
+
+.progress-bar::before,
+.progress {
+   content: "";
+   position: absolute;
+   top: 50%;
+   transform: translateY(-50%);
+   height: 4px;
+   width: 100%;
+   background-color: #dcdcdc;
+   z-index: -1;
+}
+
+.progress {
+   background-color: var(--blue-color);
+   width: 0;
+   transition: .5s;
+}
+
+.progress-step {
+   width: 35px;
+   height: 35px;
+   background-color: #dcdcdc;
+   border-radius: 50%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.progress-step::before {
+   counter-increment: step;
+   content: counter(step);
+}
+
+.progress-step::after {
+   content: attr(data-title);
+   position: absolute;
+   top: calc(100% + 0.20rem);
+   font-size: 0.85rem;
+   color: black !important;
+}
+
+.progress-step.active {
+   background-color: var(--blue-color);
+   color: white;
+}
+
+@keyframes animate {
+   from {
+       transform: scale(1, 0);
+       opacity: 0;
+   }
+
+   to {
+       transform: scale(1, 1);
+       opacity: 1;
+   }
+}
+
+/* End Progress bar */
+
+.fit-image-container {
+display: flex;
+justify-content: center;
+}
+
+.fit-image {
+width: 50%;
+object-fit: cover;
+}
+.view-btn {
+    --c:  #3366cc;
+    width: 30%;
+    float: right;
+    height: 50px;
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    padding: 10px;
+    font-family: system-ui, sans-serif;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: bold;  
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 0 0 .1em inset var(--c); 
+    --_g: linear-gradient(var(--c) 0 0) no-repeat;
+    background: 
+      var(--_g) calc(var(--_p,0%) - 100%) 0%,
+      var(--_g) calc(200% - var(--_p,0%)) 0%,
+      var(--_g) calc(var(--_p,0%) - 100%) 100%,
+      var(--_g) calc(200% - var(--_p,0%)) 100%;
+    background-size: 50.5% calc(var(--_p,0%)/2 + .5%);
+    outline-offset: .1em;
+    transition: background-size .4s, background-position 0s .4s;
+  }
+  .view-btn:hover {
+    --_p: 100%;
+    color: #fff;
+    transition: background-position .4s, background-size 0s;
+    text-decoration: none;
+  }
+  .view-btn:active {
+    box-shadow: 0 0 9e9q inset #0009; 
+    background-color: var(--c);
+    color: #fff;
+  }
+  
+  
