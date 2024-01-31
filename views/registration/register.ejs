@@ -82,8 +82,14 @@
           <input type="text" name="occupation" required>
         </div>
         <div class="input-group">
-          <label for="bloodGroup">Blood Group</label>
-          <input type="text" name="bloodGroup" >
+          <% let bloodGroup=["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-", "Not Certain"] %>
+          <label for="gender">Select Blood Group</label>
+          <select  name="bloodGroup" required/>
+                 <option value="">Select Blood Group</option>
+                <% bloodGroup.forEach((type)=> { %>
+                    <option value="<%- type %>"><%- type %></option>
+                    <% }) %>
+          </select>
         </div>
           <div class="btn-group">
               <a class="btn btn-prev">Previous</a>
@@ -94,8 +100,16 @@
         <h3>Access Informations</h3>
           <div class="experiences-group">
               <div class="experience-item">
-                
-        
+                <div class="input-group">
+                  <% let genotype=["AA", "AS","CC", "SC", "SS", "Not Certain"] %>
+                  <label for="gender">Select Genotype</label>
+                  <select  name="genotype" required/>
+                         <option value="">Select Genotype</option>
+                        <% genotype.forEach((type)=> { %>
+                            <option value="<%- type %>"><%- type %></option>
+                            <% }) %>
+                  </select>
+                </div>
                 <div class="input-group">
                   <label for="summary">Username</label>
                   <input type="text" name="username" required>

@@ -178,9 +178,23 @@
                                 </div>
                                
                                 <div class="form-group">
-                                    <label for="exampleInputCity1">Patient Blood Group:</label>
-                                      <input type="text" class="form-control" name="bloodGroup"
-                                      value="<%- editUser.bloodGroup %>"/>
+                                  <% let bloodGroup=["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-", "Not Certain"] %>
+                                  <label for="exampleSelectGender">Patient Blood Group</label>
+                                  <select class="form-control" name="bloodGroup">
+                                      <% bloodGroup.forEach((type) => { %>
+                                          <option value="<%- type %>"<% if (editUser.bloodGroup === type) { %> selected<% } %>><%- type %></option>
+                                      <% }) %>
+                                  </select>
+                                </div>
+
+                                <div class="form-group">
+                                  <% let genotype=["AA", "AS","CC", "SC", "SS", "Not Certain"] %>
+                                  <label for="exampleSelectGender">Patient Genotype</label>
+                                  <select class="form-control" name="genotype">
+                                    <% genotype.forEach((type) => { %>
+                                      <option value="<%- type %>"<% if (editUser.genotype === type) { %> selected<% } %>><%- type %></option>
+                                      <% }) %>
+                                  </select>
                                 </div>
                              
                              <button type="submit" class="btn btn-primary mr-2">Submit</button>

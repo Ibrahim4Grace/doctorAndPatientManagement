@@ -231,12 +231,12 @@ object-fit: cover;
     outline-offset: .1em;
     transition: background-size .4s, background-position 0s .4s;
   }
-  .view-btn:hover {
+  /* .view-btn:hover {
     --_p: 100%;
     color: #fff;
     transition: background-position .4s, background-size 0s;
     text-decoration: none;
-  }
+  } */
   .view-btn:active {
     box-shadow: 0 0 9e9q inset #0009; 
     background-color: var(--c);

@@ -495,7 +495,7 @@ const editMyProfilePost = async (req, res) => {
            return res.redirect('/registration/login');
        }
        
-       const { name, username, email, gender, dob, number,address, city, state, password, occupation, bloodGroup } = req.body;
+       const { name, username, email, gender, dob, number,address, city, state, password, occupation, bloodGroup, genotype } = req.body;
 
        // Check if a new image was uploaded
        let newImage = {};
@@ -533,6 +533,7 @@ const editMyProfilePost = async (req, res) => {
             password: userPasswordHash, // Update the password only if it has changed
             occupation, 
             bloodGroup, 
+            genotype,
             image: userImage,
            }
        }); 
@@ -554,6 +555,7 @@ const editMyProfilePost = async (req, res) => {
            <li>State: ${state}</li>
            <li>Occupation: ${occupation}</li>
            <li>Blood Group : ${bloodGroup}</li>
+           <li>Genotype : ${genotype}</li>
        </ul>
 
        <p>Please review the changes to ensure that they accurately reflect your information. If you believe any information is incorrect or if you have any questions regarding the update, please don't hesitate to reach out to our administrative team at +2347033731378 or ibrahim4grace@gmail.com.</p>

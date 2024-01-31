@@ -61,6 +61,9 @@ const UserSchema = new mongoose.Schema({
     bloodGroup: {
         type: String
     },
+    genotype: {
+        type: String
+    },
     failedLoginAttempts: {   
         type: Number,
         default: 0 

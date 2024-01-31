@@ -916,12 +916,12 @@ const upl = multer({ storage: storage });
 
 const addPatientPost = async (req, res) => {
 
-    const { name, username, email, gender, dob, number, address,city, state, password, password2, occupation, diagnosis, treatment, bloodGroup } = req.body;
+    const { name, username, email, gender, dob, number, address,city, state, password, password2, occupation, diagnosis, treatment, bloodGroup,genotype } = req.body;
     const admin = req.user;
     let errors = [];
 
     //check required fields
-    if (!name || !username || !email || !gender || !dob || !number || !address || !city || !state || !password || !password2 || !occupation || !bloodGroup) {
+    if (!name || !username || !email || !gender || !dob || !number || !address || !city || !state || !password || !password2 || !occupation || !bloodGroup || !genotype) {
         errors.push({ msg: 'Please fill in all fields' });
     }
 
@@ -964,6 +964,7 @@ const addPatientPost = async (req, res) => {
                 password2,
                 occupation,
                 bloodGroup,
+                genotype,
                 admin,
     
             });
@@ -993,6 +994,7 @@ const addPatientPost = async (req, res) => {
                         password2,
                         occupation,
                         bloodGroup,
+                        genotype,
                         admin,
                     });
                 } else {
@@ -1017,6 +1019,7 @@ const addPatientPost = async (req, res) => {
                             diagnosis,
                             treatment,
                             bloodGroup,
+                            genotype,
                             patientID: newPatientID, // Assign the generated patient ID
                             image: {
                                 data: fs.readFileSync(path.join(__dirname, '../public/patientImage/' + req.file.filename)),
@@ -1049,6 +1052,7 @@ const addPatientPost = async (req, res) => {
                             <li>Occupation: ${occupation}</li>
                             <li>Diagnosis: ${diagnosis}</li>
                             <li>Blood Group: ${bloodGroup}</li>
+                            <li>Genotype: ${genotype}</li>
                             <li>Email Address: ${email}</li>
                         </ul>
         
@@ -1180,7 +1184,7 @@ const editPatientPost = async (req, res) => {
         let errors = [];
         const mu_id = req.params.mu_id;
 
-        const { name, username, email, gender, dob, number, address,city,state, password, occupation,diagnosis,treatment,bloodGroup } = req.body;
+        const { name, username, email, gender, dob, number, address,city,state, password, occupation,diagnosis,treatment,bloodGroup,genotype } = req.body;
 
        // Check if a new image was uploaded
        let newImage = {};
@@ -1223,6 +1227,7 @@ const editPatientPost = async (req, res) => {
                 diagnosis,
                 treatment,
                 bloodGroup,
+                genotype,
                 image: userImage,
                 admin,
             }
@@ -1250,6 +1255,7 @@ const editPatientPost = async (req, res) => {
             <li>State: ${state}</li>
             <li>Occupation: ${occupation}</li>
             <li>Blood Group: ${bloodGroup}</li>
+            <li>Genotype: ${genotype}</li>
         </ul>
 
         <p>Please review the changes to ensure that they accurately reflect your information. If you believe any information is incorrect or if you have any questions regarding the update, please don't hesitate to reach out to our administrative team at <a href="tel:${phoneNumber}">${phoneNumber}</a> or <a href="mailto:${emailAddress}">${emailAddress}</a>.</p>

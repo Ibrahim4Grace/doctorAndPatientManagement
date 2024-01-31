@@ -56,11 +56,11 @@ const upl = multer({ storage: storage });
 
 const registrationPagePost = async (req, res) => {
   
-    const { name, username, email, gender, dob, number, address, city, state, password, password2, occupation, bloodGroup } = req.body;
+    const { name, username, email, gender, dob, number, address, city, state, password, password2, occupation, bloodGroup,genotype } = req.body;
     let errors = [];
 
     //check required fields
-    if (!name || !username || !email || !gender || !dob || !number || !address || !city || !state || !password || !password2 || !occupation || !bloodGroup) {
+    if (!name || !username || !email || !gender || !dob || !number || !address || !city || !state || !password || !password2 || !occupation || !bloodGroup || !genotype) {
         errors.push({ msg: 'Please fill in all fields' });
     }
 
@@ -93,7 +93,7 @@ const registrationPagePost = async (req, res) => {
                 email, gender, dob,
                 number,  address,city,
                 state, password, password2,
-                occupation, bloodGroup,
+                occupation, bloodGroup,genotype,
             });
     
         } else {
@@ -111,7 +111,7 @@ const registrationPagePost = async (req, res) => {
                        email, gender, dob,
                        number,address, city,
                        state,password, password2,
-                       occupation, bloodGroup,
+                       occupation, bloodGroup,genotype,
                    });
                 } else {
                         // Hash the password
@@ -132,6 +132,7 @@ const registrationPagePost = async (req, res) => {
                             password: hashedPassword,
                             occupation,
                             bloodGroup,
+                            genotype,
                             patientID: newPatientID, // Assign the generated patient ID
                             image: {
                                 data: fs.readFileSync(path.join(__dirname, '../public/patientImage/' + req.file.filename)),
@@ -159,6 +160,7 @@ const registrationPagePost = async (req, res) => {
                             <li>State: ${state}</li>
                             <li>Occupation: ${occupation}</li>
                             <li>Blood Group: ${bloodGroup}</li>
+                            <li>Genotype: ${genotype}</li>
                             <li>Email Address: ${email}</li>
                         </ul>
         
